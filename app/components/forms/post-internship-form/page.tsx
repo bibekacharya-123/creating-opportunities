@@ -1,4 +1,4 @@
-import PostInternshipForm from "@/components/forms/post-internship-form"
+import {PostInternshipForm} from "@/components/forms/post-internship-form"
 
 export default function PostInternshipFormPage() {
   return (
