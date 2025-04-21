@@ -559,8 +559,8 @@ const giftProducts = [
       Contents: "T-shirt, Tote Bag, Notebook, Book",
       Value: "Over $75 if purchased separately",
       Customization: "Choice of t-shirt size and color",
-      Packaging: "Premium gift box with ribbon",\
-      Gift Message: "Option to include a personalized message",
+      Packaging: "Premium gift box with ribbon",
+      GiftMessage: "Option to include a personalized message",
     },
     variants: {
       "T-shirt Size": ["XS", "S", "M", "L", "XL", "XXL"],
