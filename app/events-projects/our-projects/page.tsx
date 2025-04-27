@@ -2,109 +2,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Clock, MapPin } from "lucide-react"
 import HeroSection from "@/components/hero-section"
 
 export default function OurProjectsPage() {
-  const ongoingProjects = [
-    {
-      id: 4,
-      title: "Women in Leadership",
-      duration: "2023-2025",
-      location: "Various Locations",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A project focused on developing leadership skills among women and promoting gender equality.",
-      category: "Gender Equality",
-    },
-    {
-      id: 5,
-      title: "Environmental Conservation Initiative",
-      duration: "2024-2026",
-      location: "Various Locations",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A project aimed at promoting environmental conservation and sustainable practices.",
-      category: "Environment",
-    },
-    {
-      id: 6,
-      title: "Rural Education Access Program",
-      duration: "2024-2027",
-      location: "Rural Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A program designed to improve access to quality education in rural areas.",
-      category: "Education",
-    },
-    {
-      id: 7,
-      title: "Healthcare Outreach Project",
-      duration: "2023-2025",
-      location: "Underserved Communities",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A project providing healthcare services and education to underserved communities.",
-      category: "Healthcare",
-    },
-    {
-      id: 8,
-      title: "Digital Literacy Campaign",
-      duration: "2024-2026",
-      location: "Nationwide",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A campaign to improve digital literacy and access to technology across Nepal.",
-      category: "Technology",
-    },
-    {
-      id: 9,
-      title: "Entrepreneurship Development Program",
-      duration: "2024-2027",
-      location: "Various Locations",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A program supporting aspiring entrepreneurs with training, resources, and mentorship.",
-      category: "Entrepreneurship",
-    },
-  ]
-
-  const completedProjects = [
-    {
-      id: 10,
-      title: "Youth Leadership Summit 2023",
-      duration: "2023",
-      location: "Kathmandu, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A summit that brought together young leaders to discuss pressing issues and develop solutions.",
-      category: "Leadership",
-    },
-    {
-      id: 11,
-      title: "Community Health Initiative",
-      duration: "2022-2023",
-      location: "Rural Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "An initiative that improved health outcomes in rural communities through education and services.",
-      category: "Healthcare",
-    },
-    {
-      id: 12,
-      title: "Educational Resource Development",
-      duration: "2021-2023",
-      location: "Nationwide",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A project that developed and distributed educational resources to schools across Nepal.",
-      category: "Education",
-    },
-  ]
-
-  const projectCategories = [
-    "All",
-    "Education",
-    "Community",
-    "Technology",
-    "Healthcare",
-    "Environment",
-    "Gender Equality",
-    "Entrepreneurship",
-    "Leadership",
-  ]
+  const exampleProject = {
+    id: 1,
+    title: "Digital Literacy Campaign",
+    duration: "2024-2026",
+    location: "Nationwide",
+    image: "/placeholder.svg?height=200&width=300",
+    description: "A campaign to improve digital literacy and access to technology across Nepal.",
+    category: "Technology",
+  }
 
   return (
     <>
@@ -116,96 +25,34 @@ export default function OurProjectsPage() {
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="all" className="w-full">
-            <div className="flex justify-center mb-8 overflow-x-auto">
-              <TabsList className="grid grid-flow-col auto-cols-max gap-2">
-                {projectCategories.map((category) => (
-                  <TabsTrigger key={category} value={category.toLowerCase()}>
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </div>
-
-            <TabsContent value="all">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[...ongoingProjects, ...completedProjects].map((project) => (
-                  <Card key={project.id} className="overflow-hidden">
-                    <div className="h-48 relative">
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute top-2 right-2 bg-[#0e9aa7] text-white px-3 py-1 rounded-full text-xs">
-                        {project.category}
-                      </div>
-                    </div>
-                    <CardHeader>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-gray-500 text-sm flex items-center">
-                          <Clock size={14} className="mr-1" />
-                          {project.duration}
-                        </span>
-                        <span className="text-gray-500 text-sm flex items-center">
-                          <MapPin size={14} className="mr-1" />
-                          {project.location}
-                        </span>
-                      </div>
-                      <CardTitle className="text-xl">{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
-                    </CardHeader>
-                    <CardFooter>
-                      <Link href={`/events-projects/our-projects/${project.id}`} className="w-full">
-                        <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]">Learn More</Button>
-                      </Link>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-
-            {projectCategories.slice(1).map((category) => (
-              <TabsContent key={category} value={category.toLowerCase()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[...ongoingProjects, ...completedProjects]
-                    .filter((project) => project.category === category)
-                    .map((project) => (
-                      <Card key={project.id} className="overflow-hidden">
-                        <div className="h-48 relative">
-                          <Image
-                            src={project.image || "/placeholder.svg"}
-                            alt={project.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <CardHeader>
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-gray-500 text-sm flex items-center">
-                              <Clock size={14} className="mr-1" />
-                              {project.duration}
-                            </span>
-                            <span className="text-gray-500 text-sm flex items-center">
-                              <MapPin size={14} className="mr-1" />
-                              {project.location}
-                            </span>
-                          </div>
-                          <CardTitle className="text-xl">{project.title}</CardTitle>
-                          <CardDescription>{project.description}</CardDescription>
-                        </CardHeader>
-                        <CardFooter>
-                          <Link href={`/events-projects/our-projects/${project.id}`} className="w-full">
-                            <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]">Learn More</Button>
-                          </Link>
-                        </CardFooter>
-                      </Card>
-                    ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card key={exampleProject.id} className="overflow-hidden">
+              <div className="h-48 relative">
+                <Image
+                  src={exampleProject.image || "/placeholder.svg"}
+                  alt={exampleProject.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute top-2 right-2 bg-[#0e9aa7] text-white px-3 py-1 rounded-full text-xs">
+                  {exampleProject.category}
                 </div>
-              </TabsContent>
-            ))}
-          </Tabs>
+              </div>
+              <CardHeader>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-gray-500 text-sm">{exampleProject.duration}</span>
+                  <span className="text-gray-500 text-sm">{exampleProject.location}</span>
+                </div>
+                <CardTitle className="text-xl">{exampleProject.title}</CardTitle>
+                <CardDescription>{exampleProject.description}</CardDescription>
+              </CardHeader>
+              <CardFooter>
+                <Link href={`/events-projects/our-projects/${exampleProject.id}`} className="w-full">
+                  <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]">Learn More</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          </div>
         </div>
       </section>
 

@@ -5,96 +5,18 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/comp
 import { Calendar, MapPin, Users } from "lucide-react"
 import HeroSection from "@/components/hero-section"
 import { AnimatedSection } from "@/components/ui/animated-section"
+import { getFeaturedEvents, getInitiatives, getProjects, getCollaborativeEvents } from "@/lib/events-projects-data"
 
-export default function EventsProjectsPage() {
+export default async function EventsProjectsPage() {
+  const initiatives = await getInitiatives();
+  const projects = await getProjects();
+  const collaborativeEvents = await getCollaborativeEvents();
+
   const featuredEvents = [
-    {
-      id: 1,
-      title: "Youth Leadership Summit 2025",
-      date: "June 15-17, 2025",
-      location: "Kathmandu, Nepal",
-      image: "/placeholder.svg?height=300&width=400",
-      description:
-        "A three-day summit bringing together young leaders from across Nepal to discuss pressing issues and develop leadership skills.",
-      category: "Collaborative Event",
-    },
-    {
-      id: 2,
-      title: "Digital Skills Workshop Series",
-      date: "Monthly, Starting May 2025",
-      location: "Various Locations",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "A series of workshops focused on developing essential digital skills for the modern workplace.",
-      category: "Our Initiative",
-    },
-    {
-      id: 3,
-      title: "Community Development Project",
-      date: "Ongoing",
-      location: "Rural Nepal",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "A long-term project aimed at developing infrastructure and opportunities in rural communities.",
-      category: "Our Project",
-    },
-  ]
-
-  const upcomingEvents = [
-    {
-      id: 4,
-      title: "Entrepreneurship Bootcamp",
-      date: "April 25-27, 2025",
-      location: "Pokhara, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "Our Initiative",
-    },
-    {
-      id: 5,
-      title: "Career Fair 2025",
-      date: "May 10, 2025",
-      location: "Kathmandu, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "Collaborative Event",
-    },
-    {
-      id: 6,
-      title: "Tech Innovation Challenge",
-      date: "May 20-22, 2025",
-      location: "Online",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "Our Project",
-    },
-  ]
-
-  const ongoingProjects = [
-    {
-      id: 7,
-      title: "Youth Empowerment Program",
-      duration: "2023-2025",
-      location: "Nationwide",
-      image: "/placeholder.svg?height=200&width=300",
-      description:
-        "A comprehensive program designed to empower youth through education, skill development, and mentorship.",
-      category: "Our Project",
-    },
-    {
-      id: 8,
-      title: "Digital Literacy Initiative",
-      duration: "2024-2026",
-      location: "Various Locations",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "An initiative to improve digital literacy among underserved communities.",
-      category: "Our Initiative",
-    },
-    {
-      id: 9,
-      title: "Community Health Project",
-      duration: "2024-2025",
-      location: "Rural Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "A collaborative project focused on improving health outcomes in rural communities.",
-      category: "Collaborative Event",
-    },
-  ]
+    ...initiatives,
+    ...projects,
+    ...collaborativeEvents,
+  ];
 
   return (
     <>

@@ -6,8 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowLeft, Calendar, MapPin, Users, CheckCircle, Download, Share2 } from "lucide-react"
 
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
-  // In a real application, you would fetch the project data based on the ID
-  // For this example, we'll use hardcoded data
   const project = {
     id: params.id,
     title: "Youth Empowerment Program",
@@ -16,17 +14,10 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
     category: "Education",
     status: "Ongoing",
     image: "/placeholder.svg?height=400&width=800",
-    description:
-      "A comprehensive program designed to empower youth through education, skill development, and mentorship.",
     longDescription: `The Youth Empowerment Program is a flagship initiative of Creating Opportunities International, 
     designed to address the challenges faced by young people in Nepal. Through a combination of education, 
     skill development, mentorship, and community engagement, the program aims to empower youth to become 
-    agents of positive change in their communities.
-    
-    The program targets youth aged 16-25 from diverse backgrounds, with a focus on those from marginalized 
-    communities who have limited access to educational and economic opportunities. By providing them with 
-    the necessary skills, knowledge, and support, we aim to enhance their employability, entrepreneurial 
-    capabilities, and leadership potential.`,
+    agents of positive change in their communities.`,
     objectives: [
       "Enhance the educational and skill development opportunities for youth",
       "Promote entrepreneurship and innovation among young people",
@@ -61,72 +52,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       {
         title: "Networking Events",
         description: "Organizing events to connect youth with potential employers, mentors, and peers.",
-      },
-    ],
-    impact: {
-      beneficiaries: "5,000+ youth across Nepal",
-      communities: "50+ communities impacted",
-      projects: "100+ community projects implemented",
-      businesses: "75+ youth-led businesses supported",
-      employment: "60% of participants secured employment or started businesses",
-    },
-    partners: [
-      "Ministry of Youth and Sports",
-      "Nepal Youth Foundation",
-      "Global Education Initiative",
-      "Local Community Organizations",
-    ],
-    team: [
-      {
-        name: "Aarav Sharma",
-        position: "Program Director",
-        image: "/placeholder.svg?height=100&width=100",
-      },
-      {
-        name: "Sita Thapa",
-        position: "Education Coordinator",
-        image: "/placeholder.svg?height=100&width=100",
-      },
-      {
-        name: "Raj Kumar",
-        position: "Community Engagement Specialist",
-        image: "/placeholder.svg?height=100&width=100",
-      },
-      {
-        name: "Anita Gurung",
-        position: "Entrepreneurship Mentor",
-        image: "/placeholder.svg?height=100&width=100",
-      },
-    ],
-    testimonials: [
-      {
-        quote:
-          "The Youth Empowerment Program has completely transformed my life. I gained valuable skills, found a mentor, and now run my own small business.",
-        author: "Deepak, 23, Program Participant",
-        image: "/placeholder.svg?height=80&width=80",
-      },
-      {
-        quote:
-          "Being part of this program opened doors I never knew existed. The mentorship and training helped me secure a job in the tech industry.",
-        author: "Priya, 21, Program Participant",
-        image: "/placeholder.svg?height=80&width=80",
-      },
-    ],
-    resources: [
-      {
-        title: "Program Brochure",
-        type: "PDF",
-        size: "2.5 MB",
-      },
-      {
-        title: "Impact Report 2023",
-        type: "PDF",
-        size: "3.1 MB",
-      },
-      {
-        title: "Participant Handbook",
-        type: "PDF",
-        size: "1.8 MB",
       },
     ],
     gallery: [
@@ -164,7 +89,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                 </div>
                 <div className="flex items-center">
                   <Users size={16} className="mr-2" />
-                  {project.impact.beneficiaries}
+                  {project.impact?.beneficiaries}
                 </div>
               </div>
             </div>
@@ -195,7 +120,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
                   <TabsTrigger value="activities">Activities</TabsTrigger>
-              
                   <TabsTrigger value="gallery">Gallery</TabsTrigger>
                 </TabsList>
                 <TabsContent value="overview" className="mt-6">
@@ -213,34 +137,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                           </li>
                         ))}
                       </ul>
-
-                      <h3 className="text-lg font-bold mt-6 mb-3">Project Partners</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {project.partners.map((partner, index) => (
-                          <span key={index} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
-                            {partner}
-                          </span>
-                        ))}
-                      </div>
-
-                      <h3 className="text-lg font-bold mt-6 mb-3">Project Team</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                        {project.team.map((member, index) => (
-                          <div key={index} className="text-center">
-                            <div className="w-20 h-20 mx-auto rounded-full overflow-hidden mb-2">
-                              <Image
-                                src={member.image || "/placeholder.svg"}
-                                alt={member.name}
-                                width={80}
-                                height={80}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            <h4 className="font-semibold">{member.name}</h4>
-                            <p className="text-sm text-gray-600">{member.position}</p>
-                          </div>
-                        ))}
-                      </div>
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -256,13 +152,9 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                           </div>
                         ))}
                       </div>
-
-                  
-                  
                     </CardContent>
                   </Card>
                 </TabsContent>
-             
                 <TabsContent value="gallery" className="mt-6">
                   <Card>
                     <CardContent className="p-6">
@@ -307,17 +199,9 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                       <h3 className="font-semibold text-gray-700">Status</h3>
                       <p>{project.status}</p>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-700">Primary Beneficiaries</h3>
-                      <p>Youth aged 16-25 from marginalized communities</p>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
-
-             
-
-             
 
               <Card>
                 <CardContent className="p-6">

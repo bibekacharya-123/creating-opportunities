@@ -1,13 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, Clock, MapPin, ArrowRight, Building } from "lucide-react"
 import HeroSection from "@/components/hero-section"
 
 export default function CollaborativeEventsPage() {
-  const upcomingEvents = [
+  const events = [
     {
       id: 4,
       title: "Entrepreneurship Conference",
@@ -18,68 +17,6 @@ export default function CollaborativeEventsPage() {
       partners: ["Startup Nepal", "Business Incubator", "Chamber of Commerce"],
       category: "Conference",
     },
-    {
-      id: 5,
-      title: "Environmental Sustainability Workshop",
-      date: "September 15, 2025",
-      time: "10:00 AM - 3:00 PM",
-      location: "Pokhara, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      partners: ["Green Nepal", "Environmental Protection Agency", "Sustainable Development Network"],
-      category: "Workshop",
-    },
-    {
-      id: 6,
-      title: "Digital Marketing Bootcamp",
-      date: "October 10-12, 2025",
-      time: "9:00 AM - 4:00 PM",
-      location: "Chitwan, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      partners: ["Digital Marketing Association", "Tech Hub", "Business School"],
-      category: "Bootcamp",
-    },
-  ]
-
-  const pastEvents = [
-    {
-      id: 7,
-      title: "Women in Leadership Forum",
-      date: "March 8, 2025",
-      location: "Kathmandu, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      partners: ["Women's Empowerment Network", "Leadership Institute", "UN Women"],
-      category: "Forum",
-    },
-    {
-      id: 8,
-      title: "Rural Development Symposium",
-      date: "February 20-21, 2025",
-      location: "Nepalgunj, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      partners: ["Rural Development Foundation", "Agricultural Association", "Community Development Network"],
-      category: "Symposium",
-    },
-    {
-      id: 9,
-      title: "Youth Innovation Challenge",
-      date: "January 15-17, 2025",
-      location: "Biratnagar, Nepal",
-      image: "/placeholder.svg?height=200&width=300",
-      partners: ["Innovation Hub", "Youth Council", "Tech Startups"],
-      category: "Challenge",
-    },
-  ]
-
-  const eventCategories = [
-    "All",
-    "Conference",
-    "Hackathon",
-    "Fair",
-    "Workshop",
-    "Bootcamp",
-    "Forum",
-    "Symposium",
-    "Challenge",
   ]
 
   return (
@@ -95,20 +32,16 @@ export default function CollaborativeEventsPage() {
           <Tabs defaultValue="all" className="w-full">
             <div className="flex justify-center mb-8 overflow-x-auto">
               <TabsList className="grid grid-flow-col auto-cols-max gap-2">
-                {eventCategories.map((category) => (
-                  <TabsTrigger key={category} value={category.toLowerCase()}>
-                    {category}
-                  </TabsTrigger>
-                ))}
+                <TabsTrigger value="all">All</TabsTrigger>
               </TabsList>
             </div>
 
             <TabsContent value="all">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-2xl font-bold text-[#121d3e] mb-6">Upcoming Events</h3>
+                  <h3 className="text-2xl font-bold text-[#121d3e] mb-6">Events</h3>
                   <div className="space-y-6">
-                    {upcomingEvents.map((event) => (
+                    {events.map((event) => (
                       <div key={event.id} className="flex bg-white rounded-lg shadow-md overflow-hidden">
                         <div className="w-1/3 relative">
                           <Image
@@ -151,105 +84,8 @@ export default function CollaborativeEventsPage() {
                     ))}
                   </div>
                 </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-[#121d3e] mb-6">Past Events</h3>
-                  <div className="space-y-6">
-                    {pastEvents.map((event) => (
-                      <div key={event.id} className="flex bg-white rounded-lg shadow-md overflow-hidden">
-                        <div className="w-1/3 relative">
-                          <Image
-                            src={event.image || "/placeholder.svg"}
-                            alt={event.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="w-2/3 p-4">
-                          <div className="text-xs text-white bg-[#0e9aa7] inline-block px-2 py-1 rounded-full mb-2">
-                            {event.category}
-                          </div>
-                          <h4 className="font-bold text-lg mb-1">{event.title}</h4>
-                          <div className="text-gray-500 text-sm flex items-center mb-1">
-                            <Calendar size={14} className="mr-1" />
-                            {event.date}
-                          </div>
-                          <div className="text-gray-500 text-sm flex items-center mb-2">
-                            <MapPin size={14} className="mr-1" />
-                            {event.location}
-                          </div>
-                          <div className="text-sm mb-2">
-                            <span className="font-medium text-gray-700">Partners: </span>
-                            <span className="text-gray-600">{event.partners.join(", ")}</span>
-                          </div>
-                          <Link
-                            href={`/events-projects/collaborative-events/${event.id}`}
-                            className="text-[#0e9aa7] font-medium hover:underline flex items-center"
-                          >
-                            View Details
-                            <ArrowRight size={14} className="ml-1" />
-                          </Link>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </TabsContent>
-
-            {eventCategories.slice(1).map((category) => (
-              <TabsContent key={category} value={category.toLowerCase()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[...upcomingEvents, ...pastEvents]
-                    .filter((event) => event.category === category)
-                    .map((event) => (
-                      <Card key={event.id} className="overflow-hidden">
-                        <div className="h-48 relative">
-                          <Image
-                            src={event.image || "/placeholder.svg"}
-                            alt={event.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <CardHeader>
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-gray-500 text-sm flex items-center">
-                              <Calendar size={14} className="mr-1" />
-                              {event.date}
-                            </span>
-                            <span className="text-gray-500 text-sm flex items-center">
-                              <MapPin size={14} className="mr-1" />
-                              {event.location}
-                            </span>
-                          </div>
-                          <CardTitle className="text-xl">{event.title}</CardTitle>
-                          <CardDescription>
-                            {event.description || "A collaborative event with our partners"}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="pt-0">
-                          {event.time && (
-                            <div className="flex items-center text-sm text-gray-500 mb-4">
-                              <Clock size={14} className="mr-1" />
-                              {event.time}
-                            </div>
-                          )}
-                          <div className="text-sm">
-                            <span className="font-medium text-gray-700">In collaboration with: </span>
-                            <span className="text-gray-600">{event.partners.join(", ")}</span>
-                          </div>
-                        </CardContent>
-                        <CardFooter>
-                          <Link href={`/events-projects/collaborative-events/${event.id}`} className="w-full">
-                            <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]">Learn More</Button>
-                          </Link>
-                        </CardFooter>
-                      </Card>
-                    ))}
-                </div>
-              </TabsContent>
-            ))}
           </Tabs>
         </div>
       </section>
