@@ -1,5 +1,57 @@
 "use client"
 
+// Mock data for products
+const products = [
+  {
+    id: "tshirt-1",
+    code: "APP-TS001",
+    name: "Empowerment T-Shirt",
+    category: "T-Shirts",
+    price: 24.99,
+    image: "/placeholder.svg?height=400&width=400",
+    isNew: true,
+  },
+  {
+    id: "bag-1",
+    code: "ACC-BG001",
+    name: "Eco-Friendly Tote Bag",
+    category: "Bags",
+    price: 15.99,
+    image: "/placeholder.svg?height=400&width=400",
+    isNew: true,
+  },
+  {
+    id: "book-1",
+    code: "BK-001",
+    name: "Creating Your Path: A Guide to Success",
+    category: "Books",
+    price: 18.99,
+    image: "/placeholder.svg?height=400&width=400",
+    isNew: true,
+  },
+  {
+    id: "giftset-1",
+    code: "GFT-BX001",
+    name: "Empowerment Gift Box",
+    category: "Gift Sets",
+    price: 59.99,
+    image: "/placeholder.svg?height=400&width=400",
+    isNew: true,
+  },
+]
+
+// Mock data for features
+const features = [
+  {
+    title: "Quality Materials",
+    description: "All our products are made with high-quality, durable materials designed to last.",
+  },
+  {
+    title: "Custom Branding",
+    description: "Add your logo or custom design to any product.",
+  },
+]
+
 import type React from "react"
 
 import { useState } from "react"
@@ -87,40 +139,45 @@ export default function MerchandisePage() {
             </TabsList>
             <TabsContent value="apparel" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {apparelProducts.map((product, index) => (
-                  <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
-                ))}
+                {products
+                  .filter((product) => product.category === "T-Shirts")
+                  .map((product, index) => (
+                    <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
+                  ))}
               </div>
             </TabsContent>
             <TabsContent value="accessories" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {accessoriesProducts.map((product, index) => (
-                  <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
-                ))}
+                {products
+                  .filter((product) => product.category === "Bags")
+                  .map((product, index) => (
+                    <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
+                  ))}
               </div>
             </TabsContent>
             <TabsContent value="books" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {booksProducts.map((product, index) => (
-                  <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
-                ))}
+                {products
+                  .filter((product) => product.category === "Books")
+                  .map((product, index) => (
+                    <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
+                  ))}
               </div>
             </TabsContent>
             <TabsContent value="gifts" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {giftProducts.map((product, index) => (
-                  <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
-                ))}
+                {products
+                  .filter((product) => product.category === "Gift Sets")
+                  .map((product, index) => (
+                    <ProductCard key={index} product={product} onOrderClick={handleOrderClick} />
+                  ))}
               </div>
             </TabsContent>
           </Tabs>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {merchandiseFeatures.map((feature, index) => (
+            {features.map((feature, index) => (
               <div key={index} className="text-center p-6 border border-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-[#0e9aa7] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                  <feature.icon className="h-8 w-8" />
-                </div>
                 <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
                 <p className="text-gray-700">{feature.description}</p>
               </div>
@@ -140,10 +197,23 @@ export default function MerchandisePage() {
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                {bulkOrderFeatures.map((feature, index) => (
+                {features.map((feature, index) => (
                   <div key={index} className="flex items-start">
                     <div className="w-10 h-10 bg-[#0e9aa7] rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
-                      <feature.icon className="h-5 w-5" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
                     </div>
                     <div>
                       <h3 className="font-bold mb-1">{feature.title}</h3>
@@ -156,7 +226,6 @@ export default function MerchandisePage() {
           </div>
         </div>
       </section>
-
 
       {/* Order Modal */}
       <Dialog open={isOrderModalOpen} onOpenChange={setIsOrderModalOpen}>
@@ -361,275 +430,3 @@ function ProductCard({ product, onOrderClick }: { product: any; onOrderClick: (p
     </div>
   )
 }
-
-// Mock data for apparel products
-const apparelProducts = [
-  {
-    id: "tshirt-1",
-    code: "APP-TS001",
-    name: "Empowerment T-Shirt",
-    category: "T-Shirts",
-    price: 24.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: true,
-  },
-  {
-    id: "hoodie-1",
-    code: "APP-HD001",
-    name: "Opportunity Hoodie",
-    category: "Hoodies",
-    price: 49.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-  {
-    id: "hat-1",
-    code: "APP-CP001",
-    name: "Creating Opportunities Cap",
-    category: "Headwear",
-    price: 19.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-]
-
-// Mock data for accessories products
-const accessoriesProducts = [
-  {
-    id: "bag-1",
-    code: "ACC-BG001",
-    name: "Eco-Friendly Tote Bag",
-    category: "Bags",
-    price: 15.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: true,
-  },
-  {
-    id: "bottle-1",
-    code: "ACC-BT001",
-    name: "Stainless Steel Water Bottle",
-    category: "Drinkware",
-    price: 22.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-  {
-    id: "notebook-1",
-    code: "ACC-NB001",
-    name: "Inspirational Notebook",
-    category: "Stationery",
-    price: 12.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-]
-
-// Mock data for books products
-const booksProducts = [
-  {
-    id: "book-1",
-    code: "BK-001",
-    name: "Creating Your Path: A Guide to Success",
-    category: "Books",
-    price: 18.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: true,
-  },
-  {
-    id: "ebook-1",
-    code: "BK-EB001",
-    name: "Digital Transformation Workbook",
-    category: "E-Books",
-    price: 9.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-  {
-    id: "journal-1",
-    code: "BK-JN001",
-    name: "Daily Reflection Journal",
-    category: "Journals",
-    price: 14.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-]
-
-// Mock data for gift products
-const giftProducts = [
-  {
-    id: "giftset-1",
-    code: "GFT-BX001",
-    name: "Empowerment Gift Box",
-    category: "Gift Sets",
-    price: 59.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: true,
-  },
-  {
-    id: "giftcard-1",
-    code: "GFT-GC001",
-    name: "Digital Gift Card",
-    category: "Gift Cards",
-    price: 25.0,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-  {
-    id: "bundle-1",
-    code: "GFT-BN001",
-    name: "Self-Development Bundle",
-    category: "Bundles",
-    price: 79.99,
-    image: "/placeholder.svg?height=400&width=400",
-    isNew: false,
-  },
-]
-
-// Mock data for merchandise features
-const merchandiseFeatures = [
-  {
-    title: "Quality Materials",
-    description: "All our products are made with high-quality, durable materials designed to last.",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Ethical Production",
-    description: "We partner with ethical manufacturers who provide fair wages and safe working conditions.",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Mission Support",
-    description: "Every purchase directly supports our mission to create opportunities for communities worldwide.",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-  },
-]
-
-// Mock data for bulk order features
-const bulkOrderFeatures = [
-  {
-    title: "Custom Branding",
-    description: "Add your logo or custom design to any product",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Volume Discounts",
-    description: "Special pricing for large orders",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Quick Turnaround",
-    description: "Efficient production and shipping for tight deadlines",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Sample Options",
-    description: "Request samples before placing a large order",
-    icon: ({ className }: { className?: string }) => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      </svg>
-    ),
-  },
-]

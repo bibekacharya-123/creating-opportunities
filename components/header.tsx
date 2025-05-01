@@ -1,18 +1,26 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import Link from "next/link"
-import Image from "next/image"
-import { useState } from "react"
-import { Facebook, Twitter, Instagram, Linkedin, Youtube, InstagramIcon as TiktokIcon, X } from "lucide-react"
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
+  InstagramIcon as TiktokIcon,
+  X,
+} from "lucide-react";
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen)
-  }
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
     <header className="sticky top-0 z-50">
@@ -62,9 +70,15 @@ export default function Header() {
               label="Events & Projects"
               items={[
                 { href: "/events-projects", label: "All Events & Projects" },
-                { href: "/events-projects/our-projects", label: "Our Projects" },
-                { href: "/events-projects/our-initiatives", label: "Our Initiatives" },
-                { href: "/events-projects/collaborative-events", label: "Collaborative Events" },
+                {
+                  href: "/events-projects/our-projects",
+                  label: "Our Projects",
+                },
+                {
+                  href: "/events-projects/our-initiatives",
+                  label: "Our Initiatives",
+                },
+               
               ]}
             />
             <NavDropdown
@@ -79,7 +93,7 @@ export default function Header() {
               label="Our Services"
               items={[
                 { href: "/services", label: "Services" },
-                { href: "/services/extended-services", label: "Extended Services" },
+
                 { href: "/services/merchandise", label: "Merchandise" },
               ]}
             />
@@ -100,12 +114,19 @@ export default function Header() {
                 { href: "/opportunities/scholarships", label: "Scholarships" },
                 { href: "/opportunities/competitions", label: "Competitions" },
                 { href: "/opportunities/workshops", label: "Workshops" },
-                { href: "/opportunities/miscellaneous", label: "Miscellaneous" },
+                {
+                  href: "/opportunities/miscellaneous",
+                  label: "Miscellaneous",
+                },
                 { href: "/opportunities/post", label: "Post Opportunity" },
               ]}
             />
           </div>
-          <button className="md:hidden focus:outline-none" onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
+          <button
+            className="md:hidden focus:outline-none"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
             {mobileMenuOpen ? (
               <X className="w-6 h-6" />
             ) : (
@@ -116,7 +137,12 @@ export default function Header() {
                 stroke="currentColor"
                 className="w-6 h-6"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             )}
           </button>
@@ -127,8 +153,16 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg absolute w-full z-50 max-h-[80vh] overflow-y-auto">
           <div className="py-2 px-4">
-            <MobileNavLink href="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
-            <MobileNavLink href="/about" label="About" onClick={() => setMobileMenuOpen(false)} />
+            <MobileNavLink
+              href="/"
+              label="Home"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <MobileNavLink
+              href="/about"
+              label="About"
+              onClick={() => setMobileMenuOpen(false)}
+            />
 
             <MobileNavAccordion label="Events & Projects">
               <MobileNavLink
@@ -154,13 +188,29 @@ export default function Header() {
             </MobileNavAccordion>
 
             <MobileNavAccordion label="Our Portfolio">
-              <MobileNavLink href="/portfolio" label="Portfolio" onClick={() => setMobileMenuOpen(false)} />
-              <MobileNavLink href="/portfolio/gallery" label="Gallery" onClick={() => setMobileMenuOpen(false)} />
-              <MobileNavLink href="/portfolio/blog" label="Blog" onClick={() => setMobileMenuOpen(false)} />
+              <MobileNavLink
+                href="/portfolio"
+                label="Portfolio"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+              <MobileNavLink
+                href="/portfolio/gallery"
+                label="Gallery"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+              <MobileNavLink
+                href="/portfolio/blog"
+                label="Blog"
+                onClick={() => setMobileMenuOpen(false)}
+              />
             </MobileNavAccordion>
 
             <MobileNavAccordion label="Our Services">
-              <MobileNavLink href="/services" label="Services" onClick={() => setMobileMenuOpen(false)} />
+              <MobileNavLink
+                href="/services"
+                label="Services"
+                onClick={() => setMobileMenuOpen(false)}
+              />
               <MobileNavLink
                 href="/services/extended-services"
                 label="Extended Services"
@@ -174,13 +224,29 @@ export default function Header() {
             </MobileNavAccordion>
 
             <MobileNavAccordion label="Contact Us">
-              <MobileNavLink href="/contact" label="Contact Form" onClick={() => setMobileMenuOpen(false)} />
-              <MobileNavLink href="/donate" label="Donate" onClick={() => setMobileMenuOpen(false)} />
+              <MobileNavLink
+                href="/contact"
+                label="Contact Form"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+              <MobileNavLink
+                href="/donate"
+                label="Donate"
+                onClick={() => setMobileMenuOpen(false)}
+              />
             </MobileNavAccordion>
 
             <MobileNavAccordion label="Opportunities">
-              <MobileNavLink href="/opportunities" label="All Opportunities" onClick={() => setMobileMenuOpen(false)} />
-              <MobileNavLink href="/opportunities/jobs" label="Jobs" onClick={() => setMobileMenuOpen(false)} />
+              <MobileNavLink
+                href="/opportunities"
+                label="All Opportunities"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+              <MobileNavLink
+                href="/opportunities/jobs"
+                label="Jobs"
+                onClick={() => setMobileMenuOpen(false)}
+              />
               <MobileNavLink
                 href="/opportunities/internships"
                 label="Internships"
@@ -221,18 +287,27 @@ export default function Header() {
         </div>
       )}
     </header>
-  )
+  );
 }
 
 function NavLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link href={href} className="text-gray-800 hover:text-[#0e76bc] font-medium">
+    <Link
+      href={href}
+      className="text-gray-800 hover:text-[#0e76bc] font-medium"
+    >
       {label}
     </Link>
-  )
+  );
 }
 
-function NavDropdown({ label, items }: { label: string; items: { href: string; label: string }[] }) {
+function NavDropdown({
+  label,
+  items,
+}: {
+  label: string;
+  items: { href: string; label: string }[];
+}) {
   return (
     <div className="relative group">
       <button className="text-gray-800 hover:text-[#0e76bc] font-medium flex items-center">
@@ -244,23 +319,40 @@ function NavDropdown({ label, items }: { label: string; items: { href: string; l
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
       <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
         <div className="py-1">
           {items.map((item, index) => (
-            <Link key={index} href={item.href} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <Link
+              key={index}
+              href={item.href}
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
               {item.label}
             </Link>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-function MobileNavLink({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
+function MobileNavLink({
+  href,
+  label,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  onClick: () => void;
+}) {
   return (
     <Link
       href={href}
@@ -269,11 +361,17 @@ function MobileNavLink({ href, label, onClick }: { href: string; label: string; 
     >
       {label}
     </Link>
-  )
+  );
 }
 
-function MobileNavAccordion({ label, children }: { label: string; children: React.ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false)
+function MobileNavAccordion({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="border-b border-gray-100">
@@ -284,17 +382,28 @@ function MobileNavAccordion({ label, children }: { label: string; children: Reac
         {label}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`h-4 w-4 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
-      <div className={`pl-4 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}>
+      <div
+        className={`pl-4 overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96" : "max-h-0"
+        }`}
+      >
         {children}
       </div>
     </div>
-  )
+  );
 }

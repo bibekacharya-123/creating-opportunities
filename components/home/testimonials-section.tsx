@@ -8,24 +8,7 @@ export default function TestimonialsSection() {
       name: "Sarah Johnson",
       position: "Marketing Professional",
       company: "ABC Company",
-      quote:
-        "Creating Opportunities International helped me find the perfect job that aligned with my career goals. Their guidance and support throughout the process was invaluable.",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      name: "Rajesh Sharma",
-      position: "Software Engineer",
-      company: "Tech Solutions",
-      quote:
-        "The skills training program completely transformed my career trajectory. I gained practical knowledge that I could immediately apply in my work.",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      name: "Priya Patel",
-      position: "Recent Graduate",
-      company: "University of Nepal",
-      quote:
-        "As a fresh graduate, I was unsure about my career path. The career counseling services provided clarity and direction, helping me secure my first job.",
+      quote: "Creating Opportunities International helped me find the perfect job that aligned with my career goals.",
       image: "/placeholder.svg?height=100&width=100",
     },
   ]
