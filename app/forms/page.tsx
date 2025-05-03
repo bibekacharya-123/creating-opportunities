@@ -1,9 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ContactForm from "@/components/forms/contact-form"
-import JobApplicationForm from "@/components/forms/job-application-form"
-import EventRegistrationForm from "@/components/forms/event-registration-form"
-import ResumeSubmissionForm from "@/components/forms/resume-submission-form"
-import FeedbackForm from "@/components/forms/feedback-form"
+
+
 import NewsletterForm from "@/components/forms/newsletter-form"
 
 export default function FormsPage() {
@@ -22,10 +20,7 @@ export default function FormsPage() {
             <div className="flex justify-center mb-8 overflow-x-auto">
               <TabsList className="grid grid-cols-6 w-full max-w-4xl">
                 <TabsTrigger value="contact">Contact</TabsTrigger>
-                <TabsTrigger value="job">Job Application</TabsTrigger>
-                <TabsTrigger value="event">Event Registration</TabsTrigger>
-                <TabsTrigger value="resume">Resume Submission</TabsTrigger>
-                <TabsTrigger value="feedback">Feedback</TabsTrigger>
+               
                 <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
               </TabsList>
             </div>
@@ -34,21 +29,10 @@ export default function FormsPage() {
               <ContactForm />
             </TabsContent>
 
-            <TabsContent value="job" className="max-w-4xl mx-auto">
-              <JobApplicationForm jobTitle="Marketing Manager" />
-            </TabsContent>
+    
+       
 
-            <TabsContent value="event" className="max-w-4xl mx-auto">
-              <EventRegistrationForm eventTitle="Career Development Workshop" eventDate="April 20, 2025" />
-            </TabsContent>
 
-            <TabsContent value="resume" className="max-w-4xl mx-auto">
-              <ResumeSubmissionForm />
-            </TabsContent>
-
-            <TabsContent value="feedback" className="max-w-4xl mx-auto">
-              <FeedbackForm />
-            </TabsContent>
 
             <TabsContent value="newsletter" className="max-w-4xl mx-auto">
               <NewsletterForm />
