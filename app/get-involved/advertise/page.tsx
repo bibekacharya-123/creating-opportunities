@@ -63,7 +63,7 @@ export default function AdvertisePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/assets/advertise.jpg"
                 alt="Advertise with Us"
                 width={600}
                 height={400}

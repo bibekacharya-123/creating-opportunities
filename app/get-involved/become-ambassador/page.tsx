@@ -23,21 +23,25 @@ export default function BecomeAmbassadorPage() {
 
   return (
     <>
-      <section className="bg-[#121d3e] text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Become a COI Ambassador</h1>
-          <p className="max-w-3xl mx-auto text-lg">
-            Represent Creating Opportunities International in your community and help spread our mission.
-          </p>
-        </div>
-      </section>
+      <header className="relative">
+        <Image
+          src="/assets/ambasador.jpg"
+          alt="Ambassador Header"
+          width={1920}
+          height={600}
+          className="w-full h-auto object-cover"
+        />
+      
+      </header>
+
+   
 
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/assets/ambass.png"
                 alt="Our Ambassadors"
                 width={600}
                 height={400}

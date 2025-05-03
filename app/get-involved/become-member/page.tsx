@@ -11,7 +11,7 @@ export default function BecomeMemberPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <Image
-              src="/placeholder.svg?height=600&width=800"
+              src="/assets/members.jpg"
               alt="Mountain landscape"
               width={800}
               height={600}

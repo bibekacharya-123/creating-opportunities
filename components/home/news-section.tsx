@@ -26,7 +26,7 @@ export default function NewsSection() {
               className="border-none shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
             >
               <div className="h-48 relative">
-                <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
+                <Image src={post.image || "/assets/cover1.jpg"} alt={post.title} fill className="object-cover" />
               </div>
               <CardHeader className="pb-2">
                 <div className="flex items-center text-gray-500 text-sm mb-2">

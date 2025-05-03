@@ -141,7 +141,7 @@ export default function BecomePartnerPage() {
             </div>
             <div className="rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/assets/partnerorgn.jpg"
                 alt="Partner Organizations"
                 width={600}
                 height={400}
