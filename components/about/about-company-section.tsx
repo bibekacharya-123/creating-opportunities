@@ -23,7 +23,7 @@ export default function AboutCompanySection() {
           </div>
           <div className="rounded-lg overflow-hidden shadow-lg">
             <Image
-              src="/placeholder.svg?height=400&width=600"
+              src="/assets/about.jpg"
               alt="About Creating Opportunities"
               width={600}
               height={400}

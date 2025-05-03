@@ -13,7 +13,7 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <section
-      className="relative w-full h-[300px] md:h-[400px]"
+      className="relative w-full h-[500px] md:h-[400px]"
       style={{
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
         backgroundColor: !backgroundImage ? backgroundColor : "transparent",
