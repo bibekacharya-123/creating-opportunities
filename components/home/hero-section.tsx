@@ -10,19 +10,19 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      image: "/placeholder.svg?height=1080&width=1920",
+      image: "/assets/cover3.avif",
       title: "Creating Opportunities International",
       description: "Nepal's foremost platform for educational and professional opportunities.",
     },
     {
       id: 2,
-      image: "/placeholder.svg?height=1080&width=1920",
+      image: "/assets/cover4.avif",
       title: "Empowering Dreams",
       description: "We connect talented individuals with life-changing opportunities.",
     },
     {
       id: 3,
-      image: "/placeholder.svg?height=1080&width=1920",
+      image: "/assets/cover5.avif",
       title: "Your Path to Success",
       description: "Discover scholarships, fellowships, jobs, and more.",
     },
@@ -44,7 +44,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen w-full overflow-hidden">
+    <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] w-full overflow-hidden">
       {/* Slider */}
       <div className="relative h-full w-full">
         {slides.map((slide, index) => (

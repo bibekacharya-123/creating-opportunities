@@ -5,11 +5,25 @@ import { Quote } from "lucide-react"
 export default function TestimonialsSection() {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      position: "Marketing Professional",
-      company: "ABC Company",
-      quote: "Creating Opportunities International helped me find the perfect job that aligned with my career goals.",
-      image: "/placeholder.svg?height=100&width=100",
+      name: "Bablu Gupta",
+      position: "youth activist",
+
+      quote: "Creating Opportunities International has been a game-changer for me. The resources and support they provide are invaluable.",
+      image: "/assets/bablu.jpg",
+    },
+    {
+      name: "Dr Sharma Husnain",
+      position: "CEO",
+
+      quote: "i have been blown away by the level of support and resources available. The team is incredibly knowledgeable and always willing to help.",
+      image: "/assets/husain.png",
+    },
+    {
+      name: "Raina Lampopu",
+      position: "Global Educationist",
+     
+      quote: "I love the fact that Creating Opportunities international is so user-friendly  and accessible..",
+      image: "/assets/raina.jpg",
     },
   ]
 
@@ -44,7 +58,7 @@ export default function TestimonialsSection() {
                   <div>
                     <h4 className="font-bold text-[#121d3e]">{testimonial.name}</h4>
                     <p className="text-sm text-gray-600">
-                      {testimonial.position}, {testimonial.company}
+                      {testimonial.position}, 
                     </p>
                   </div>
                 </div>

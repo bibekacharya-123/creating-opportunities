@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-[#121d3e] text-white py-3 px-4 flex justify-between items-center">
+      <div className="bg-[#121d3e] text-white py-1 px-4 flex justify-between items-center">
         <div>
           <a href="mailto:info@creatingoppo.com" className="text-sm">
             info@creatingoppo.com
@@ -51,11 +51,11 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <nav className="bg-white py-4 px-4 shadow-sm">
+      <nav className="bg-white py-2 px-4 shadow-sm">
         <div className="container mx-auto flex justify-between items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo.png"
+              src="/assets/logo.jpg" // Ensure the image is in the 'public/assets/' directory
               alt="Creating Opportunities Logo"
               width={80}
               height={80}

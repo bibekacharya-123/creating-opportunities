@@ -3,12 +3,20 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 
 export default function PartnersSection() {
   const partners = [
-    { name: "Partner 1", logo: "/placeholder.svg?height=80&width=200" },
-    { name: "Partner 2", logo: "/placeholder.svg?height=80&width=200" },
-    { name: "Partner 3", logo: "/placeholder.svg?height=80&width=200" },
-    { name: "Partner 4", logo: "/placeholder.svg?height=80&width=200" },
-    { name: "Partner 5", logo: "/placeholder.svg?height=80&width=200" },
-    { name: "Partner 6", logo: "/placeholder.svg?height=80&width=200" },
+    { name: "YFC-KU ", logo: "/assets/yfc.jpg" },
+    { name: "Scholostic Foundation", logo: "/assets/sf.jpg" },
+    { name: "DELIGHT", logo: "/assets/delight.jpg" },
+    { name: "Language Of Liberty", logo: "/assets/liberty.jpg" },
+    { name: "FountED", logo: "/assets/fount.jpg" },
+    { name: "AVIXANTA", logo: "/assets/avainta.jpg" },
+    { name: "BAN", logo: "/assets/ban.jpeg" },
+    { name: "Coding Olynpics Nepal", logo: "/assets/coding.png" },
+    { name: "Rotaract", logo: "/assets/rotract.png" },
+    { name: "jaya Nepal", logo: "/assets/jaya.jpg" },
+    { name: "lola", logo: "/assets/lola.jpg" },
+
+ 
+
   ]
 
   return (
@@ -31,8 +39,8 @@ export default function PartnersSection() {
 
         <div className="relative">
           {/* Decorative elements */}
-          <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-20 h-20 bg-light-teal/10 rounded-full"></div>
-          <div className="absolute -right-10 top-1/3 transform -translate-y-1/2 w-16 h-16 bg-light-teal/20 rounded-full"></div>
+          <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-30 h-30 bg-light-teal/10 rounded-full"></div>
+          <div className="absolute -right-10 top-1/3 transform -translate-y-1/2 w-20 h-20 bg-light-teal/20 rounded-full"></div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {partners.map((partner, index) => (

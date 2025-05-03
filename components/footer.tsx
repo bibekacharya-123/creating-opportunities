@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="inline-block mb-4">
-              <Image src="/logo.png" alt="Creating Opportunities Logo" width={120} height={120} className="h-auto" />
+              <Image src="/assets/logo.jpg" alt="Creating Opportunities Logo" width={120} height={120} className="h-auto" />
             </Link>
             <p className="text-sm md:text-base mb-4">
               Creating Opportunities International is Nepal's foremost platform for educational and professional
