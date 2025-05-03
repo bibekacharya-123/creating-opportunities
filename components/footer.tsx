@@ -5,7 +5,10 @@ import { Facebook, Twitter, Instagram, Linkedin, Youtube, InstagramIcon as Tikto
 
 export default function Footer() {
   return (
-    <footer className="bg-[#121d3e] text-white">
+    <footer
+      className="text-white"
+      style={{ backgroundImage: "url('/assets/footer-bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
