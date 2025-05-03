@@ -5,18 +5,9 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/comp
 import { Calendar, MapPin, Users } from "lucide-react"
 import HeroSection from "@/components/hero-section"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { getFeaturedEvents, getInitiatives, getProjects, getCollaborativeEvents } from "@/lib/events-projects-data"
+
 
 export default async function EventsProjectsPage() {
-  const initiatives = await getInitiatives();
-  const projects = await getProjects();
-  const collaborativeEvents = await getCollaborativeEvents();
-
-  const featuredEvents = [
-    ...initiatives,
-    ...projects,
-    ...collaborativeEvents,
-  ];
 
   return (
     <>
@@ -33,40 +24,7 @@ export default async function EventsProjectsPage() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-[#121d3e] mb-8 text-left">Featured Events & Projects</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredEvents.map((event) => (
-                <Card key={event.id} className="overflow-hidden">
-                  <div className="h-48 relative">
-                    <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" />
-                    <div className="absolute top-2 right-2 bg-[#0e9aa7] text-white px-3 py-1 rounded-full text-xs">
-                      {event.category}
-                    </div>
-                  </div>
-                  <CardHeader>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-500 text-sm flex items-center">
-                        <Calendar size={14} className="mr-1" />
-                        {event.date}
-                      </span>
-                      <span className="text-gray-500 text-sm flex items-center">
-                        <MapPin size={14} className="mr-1" />
-                        {event.location}
-                      </span>
-                    </div>
-                    <CardTitle className="text-xl">{event.title}</CardTitle>
-                    <CardDescription>{event.description}</CardDescription>
-                  </CardHeader>
-                  <CardFooter>
-                    <Link
-                      href={`/events-projects/${event.category.toLowerCase().replace(/\s+/g, "-")}s/${event.id}`}
-                      className="w-full"
-                    >
-                      <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]">Learn More</Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
+          
           </div>
         </section>
       </AnimatedSection>
