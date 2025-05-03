@@ -1,11 +1,30 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { CalendarDays, MapPin, Clock, Search, Filter, ExternalLink } from "lucide-react"
-import HeroSection from "@/components/hero-section"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import {
+  CalendarDays,
+  MapPin,
+  Clock,
+
+  ExternalLink,
+} from "lucide-react";
+import HeroSection from "@/components/hero-section";
 
 export default function InternshipsPage() {
   return (
@@ -18,15 +37,13 @@ export default function InternshipsPage() {
 
       <section className="py-12">
         <div className="container mx-auto px-4">
-     
-
           <div className="flex flex-col md:flex-row gap-8">
-            
-
             <div className="md:w-3/4">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Available Internships</h2>
-                <div className="text-sm text-gray-500">Showing 8 of 24 internships</div>
+                <div className="text-sm text-gray-500">
+                  Showing 8 of 24 internships
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,76 +57,6 @@ export default function InternshipsPage() {
                     duration: "3 months",
                     deadline: "April 30, 2025",
                     featured: true,
-                  },
-                  {
-                    id: "research-assistant",
-                    title: "Research Assistant",
-                    company: "Research Institute",
-                    location: "Kathmandu, Nepal",
-                    type: "Part-time",
-                    duration: "6 months",
-                    deadline: "May 5, 2025",
-                    featured: true,
-                  },
-                  {
-                    id: "web-development-intern",
-                    title: "Web Development Intern",
-                    company: "Tech Startup",
-                    location: "Kathmandu, Nepal",
-                    type: "Part-time",
-                    duration: "3 months",
-                    deadline: "May 15, 2025",
-                    featured: false,
-                  },
-                  {
-                    id: "social-media-intern",
-                    title: "Social Media Intern",
-                    company: "Digital Marketing Agency",
-                    location: "Remote",
-                    type: "Part-time",
-                    duration: "3 months",
-                    deadline: "April 28, 2025",
-                    featured: false,
-                  },
-                  {
-                    id: "graphic-design-intern",
-                    title: "Graphic Design Intern",
-                    company: "Creative Studio",
-                    location: "Kathmandu, Nepal",
-                    type: "Part-time",
-                    duration: "3 months",
-                    deadline: "May 10, 2025",
-                    featured: false,
-                  },
-                  {
-                    id: "content-writing-intern",
-                    title: "Content Writing Intern",
-                    company: "Media House",
-                    location: "Remote",
-                    type: "Part-time",
-                    duration: "3 months",
-                    deadline: "May 8, 2025",
-                    featured: false,
-                  },
-                  {
-                    id: "finance-intern",
-                    title: "Finance Intern",
-                    company: "Investment Group",
-                    location: "Kathmandu, Nepal",
-                    type: "Full-time",
-                    duration: "6 months",
-                    deadline: "May 20, 2025",
-                    featured: false,
-                  },
-                  {
-                    id: "hr-intern",
-                    title: "HR Intern",
-                    company: "Corporate Solutions",
-                    location: "Kathmandu, Nepal",
-                    type: "Part-time",
-                    duration: "3 months",
-                    deadline: "May 12, 2025",
-                    featured: false,
                   },
                 ].map((internship) => (
                   <InternshipCard
@@ -126,19 +73,7 @@ export default function InternshipsPage() {
                 ))}
               </div>
 
-              <div className="mt-10 flex justify-center">
-                <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" className="w-9 p-0">
-                    1
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-9 p-0">
-                    2
-                  </Button>
-                  <Button variant="outline" size="sm" className="w-9 p-0">
-                    3
-                  </Button>
-                </div>
-              </div>
+             
             </div>
           </div>
         </div>
@@ -146,9 +81,12 @@ export default function InternshipsPage() {
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-[#121d3e] mb-8">Are You an Employer?</h2>
+          <h2 className="text-3xl font-bold text-[#121d3e] mb-8">
+            Are You an Employer?
+          </h2>
           <p className="max-w-2xl mx-auto mb-8 text-lg">
-            Find talented interns by posting your internship opportunities on our platform.
+            Find talented interns by posting your internship opportunities on
+            our platform.
           </p>
           <Link href="/opportunities/post">
             <Button className="bg-[#0e9aa7] hover:bg-[#0c8b98] text-white px-8 py-6 rounded font-bold text-lg">
@@ -158,7 +96,7 @@ export default function InternshipsPage() {
         </div>
       </section>
     </>
-  )
+  );
 }
 
 function InternshipCard({
@@ -171,18 +109,20 @@ function InternshipCard({
   deadline,
   featured,
 }: {
-  id: string
-  title: string
-  company: string
-  location: string
-  type: string
-  duration: string
-  deadline: string
-  featured: boolean
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  type: string;
+  duration: string;
+  deadline: string;
+  featured: boolean;
 }) {
   return (
     <Card
-      className={`h-full flex flex-col hover:shadow-lg transition-shadow duration-300 ${featured ? "border-l-4 border-[#f39c12]" : ""}`}
+      className={`h-full flex flex-col hover:shadow-lg transition-shadow duration-300 ${
+        featured ? "border-l-4 border-[#f39c12]" : ""
+      }`}
     >
       {featured && (
         <div className="absolute top-0 right-0">
@@ -219,5 +159,5 @@ function InternshipCard({
         </Link>
       </CardFooter>
     </Card>
-  )
+  );
 }

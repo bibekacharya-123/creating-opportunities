@@ -90,67 +90,6 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-light-teal">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-dark-teal mb-8">Featured Collections</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-              <div className="relative h-64">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Annual Conference 2023"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-dark-teal">Annual Conference 2023</h3>
-                <p className="text-medium-teal mb-4">
-                  Highlights from our flagship event bringing together industry leaders and innovators.
-                </p>
-                <span className="text-dark-teal font-medium">24 Photos</span>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-              <div className="relative h-64">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Community Outreach Program"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-dark-teal">Community Outreach Program</h3>
-                <p className="text-medium-teal mb-4">
-                  Our initiatives to support and empower local communities through various programs.
-                </p>
-                <span className="text-dark-teal font-medium">36 Photos</span>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-              <div className="relative h-64">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Team Building Retreat"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-dark-teal">Team Building Retreat</h3>
-                <p className="text-medium-teal mb-4">
-                  Moments from our annual team retreat focused on collaboration and innovation.
-                </p>
-                <span className="text-dark-teal font-medium">18 Photos</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

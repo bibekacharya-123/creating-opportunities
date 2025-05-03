@@ -1,67 +1,55 @@
 "use client"
 import { useState } from "react";
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { MapPin, Briefcase, Building, Clock, ChevronLeft, Share2 } from "lucide-react"
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/components/ui/modal"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, Clock, ChevronLeft } from "lucide-react";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/components/ui/modal";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const jobId = params?.id; // Ensure params is safely accessed
+  const jobId = params?.id;
 
-  // This would normally come from a database or API
+  // Updated mock data
   const job = {
     id: jobId,
-    title: "Senior Project Manager",
-    company: "Tech Innovations",
-    location: "Kathmandu, Nepal",
-    type: "Full-time",
-    category: "Project Management",
-    experience: "5+ years",
-    deadline: "May 15, 2025",
-    salary: "$50,000 - $70,000 per year",
-    posted: "April 10, 2025",
-    description: `
-      <p>We are seeking an experienced Senior Project Manager to join our dynamic team. The ideal candidate will be responsible for leading and managing complex projects from inception to completion, ensuring they are delivered on time, within scope, and within budget.</p>
+    title: "Software Engineer",
+    deadline: "June 30, 2025",
+    benefits: [
+      "Health insurance",
+      "Flexible working hours",
+      "Remote work options",
+      "Professional development programs",
+    ],
+    eligibility: [
+      "Bachelor's degree in Computer Science or related field",
+      "3+ years of experience in software development",
+      "Proficiency in JavaScript, React, and Node.js",
+      "Strong problem-solving skills",
+    ],
+    fullDescription: `
+      <p>We are looking for a skilled Software Engineer to join our team. You will be responsible for developing and maintaining high-quality software solutions.</p>
       
       <h4>Responsibilities:</h4>
       <ul>
-        <li>Develop and maintain project plans, schedules, and budgets</li>
-        <li>Lead cross-functional teams to deliver successful project outcomes</li>
-        <li>Identify and manage project risks, issues, and dependencies</li>
-        <li>Communicate project status, issues, and risks to stakeholders</li>
-        <li>Ensure project deliverables are of high quality and meet requirements</li>
-        <li>Mentor and develop junior project managers</li>
-      </ul>
-      
-      <h4>Requirements:</h4>
-      <ul>
-        <li>Bachelor's degree in Business, Engineering, or related field</li>
-        <li>5+ years of experience in project management</li>
-        <li>PMP certification preferred</li>
-        <li>Strong leadership and communication skills</li>
-        <li>Experience with project management methodologies (Agile, Waterfall)</li>
-        <li>Proficiency in project management tools</li>
-        <li>Excellent problem-solving and decision-making abilities</li>
-      </ul>
-      
-      <h4>Benefits:</h4>
-      <ul>
-        <li>Competitive salary and performance bonuses</li>
-        <li>Health insurance and retirement plans</li>
-        <li>Flexible work arrangements</li>
-        <li>Professional development opportunities</li>
-        <li>Collaborative and innovative work environment</li>
+        <li>Write clean, maintainable, and efficient code</li>
+        <li>Collaborate with cross-functional teams</li>
+        <li>Participate in code reviews</li>
+        <li>Ensure software quality through testing</li>
       </ul>
     `,
-    companyDescription:
-      "Tech Innovations is a leading technology company specializing in innovative software solutions for businesses across various industries. With a team of talented professionals, we are committed to delivering high-quality products and services that help our clients achieve their goals.",
-  }
+    country: "USA",
+    region: "California",
+    applicationList: [
+      { name: "John Doe", email: "john.doe@example.com", position: "Software Engineer" },
+      { name: "Jane Smith", email: "jane.smith@example.com", position: "Software Engineer" },
+    ],
+    image: "/images/software-engineer.jpg",
+  };
 
   return (
     <>
@@ -72,31 +60,20 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
               <ChevronLeft className="mr-1 h-4 w-4" />
               Back to Jobs
             </Link>
-            <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
-              <Share2 className="mr-2 h-4 w-4" /> Share Job
-            </Button>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-2">{job.title}</h1>
           <div className="flex flex-wrap items-center text-white/80 gap-x-6 gap-y-2 mb-6">
             <div className="flex items-center">
-              <Building className="mr-2 h-4 w-4" />
-              <span>{job.company}</span>
-            </div>
-            <div className="flex items-center">
               <MapPin className="mr-2 h-4 w-4" />
-              <span>{job.location}</span>
-            </div>
-            <div className="flex items-center">
-              <Briefcase className="mr-2 h-4 w-4" />
-              <span>{job.type}</span>
+              <span>{job.region}, {job.country}</span>
             </div>
             <div className="flex items-center">
               <Clock className="mr-2 h-4 w-4" />
-              <span>{job.experience}</span>
+              <span>Deadline: {job.deadline}</span>
             </div>
           </div>
           <div className="flex flex-wrap gap-3 mb-8">
-            <Badge className="bg-white text-[#121d3e]">{job.category}</Badge>
+            <Badge className="bg-white text-[#121d3e]">Software Development</Badge>
             <Badge className="bg-[#0e9aa7]">Featured</Badge>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -142,16 +119,31 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
             <div className="lg:w-2/3">
               <Card className="mb-8">
                 <CardContent className="p-6">
-                  <h2 className="text-2xl font-bold mb-6">Job Description</h2>
-                  <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: job.description }} />
+                  <img src={job.image} alt={job.title} className="w-full h-full object-cover rounded mb-6" />
+                  <h2 className="text-2xl font-bold mb-6">Full Description</h2>
+                  <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: job.fullDescription }} />
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="p-6">
-                  <h2 className="text-2xl font-bold mb-4">About {job.company}</h2>
-                  <p className="text-gray-700 mb-6">{job.companyDescription}</p>
-                  <Button variant="outline">Visit Company Website</Button>
+                  <h2 className="text-2xl font-bold mb-4">Eligibility</h2>
+                  <ul className="list-disc pl-6">
+                    {job.eligibility.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-2xl font-bold mb-4">Benefits</h2>
+                  <ul className="list-disc pl-6">
+                    {job.benefits.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             </div>
@@ -160,42 +152,24 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
               <Card className="sticky top-24">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-6">Job Overview</h3>
-
                   <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Posted On:</span>
-                      <span className="font-medium">{job.posted}</span>
-                    </div>
                     <div className="flex justify-between">
                       <span className="text-gray-500">Deadline:</span>
                       <span className="font-medium">{job.deadline}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Job Type:</span>
-                      <span className="font-medium">{job.type}</span>
+                      <span className="text-gray-500">Country:</span>
+                      <span className="font-medium">{job.country}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Location:</span>
-                      <span className="font-medium">{job.location}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Category:</span>
-                      <span className="font-medium">{job.category}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Experience:</span>
-                      <span className="font-medium">{job.experience}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Salary:</span>
-                      <span className="font-medium">{job.salary}</span>
+                      <span className="text-gray-500">Region:</span>
+                      <span className="font-medium">{job.region}</span>
                     </div>
                   </div>
-
                   <div className="mt-8 space-y-4">
-                    <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]"  onClick={() => setIsModalOpen(true)}
-            >Apply Now</Button>
-                   
+                    <Button className="w-full bg-[#0e9aa7] hover:bg-[#0c8b98]" onClick={() => setIsModalOpen(true)}>
+                      Apply Now
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -203,8 +177,6 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </section>
-
-     
     </>
-  )
+  );
 }

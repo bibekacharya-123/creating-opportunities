@@ -69,10 +69,10 @@ export default function Header() {
             <NavDropdown
               label="Events & Projects"
               items={[
-                { href: "/events-projects", label: "All Events & Projects" },
+       
                 {
                   href: "/events-projects/our-projects",
-                  label: "Our Projects",
+                  label: "Our Projects and events",
                 },
                 {
                   href: "/events-projects/our-initiatives",
@@ -114,10 +114,7 @@ export default function Header() {
                 { href: "/opportunities/scholarships", label: "Scholarships" },
                 { href: "/opportunities/competitions", label: "Competitions" },
                 { href: "/opportunities/workshops", label: "Workshops" },
-                {
-                  href: "/opportunities/miscellaneous",
-                  label: "Miscellaneous",
-                },
+              
                 { href: "/opportunities/post", label: "Post Opportunity" },
               ]}
             />

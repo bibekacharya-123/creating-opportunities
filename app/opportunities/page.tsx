@@ -34,53 +34,12 @@ export default function OpportunitiesPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <Tabs defaultValue="featured" className="w-full">
-              <div className="flex justify-center mb-8 overflow-x-auto">
-                <TabsList className="grid grid-cols-7 md:grid-cols-7 min-w-max">
-                  <TabsTrigger value="featured">Featured</TabsTrigger>
-                  <TabsTrigger value="jobs">Jobs</TabsTrigger>
-                  <TabsTrigger value="internships">Internships</TabsTrigger>
-                  <TabsTrigger value="fellowships">Fellowships</TabsTrigger>
-                  <TabsTrigger value="scholarships">Scholarships</TabsTrigger>
-                  <TabsTrigger value="competitions">Competitions</TabsTrigger>
-                  <TabsTrigger value="workshops">Workshops</TabsTrigger>
-                </TabsList>
-              </div>
+              
 
               <TabsContent value="featured">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  <FeaturedOpportunityCard
-                    title="Senior Project Manager"
-                    company="Tech Innovations"
-                    location="Kathmandu, Nepal"
-                    type="Full-time"
-                    category="Job"
-                    deadline="May 15, 2025"
-                    featured={true}
-                    link="/opportunities/jobs/senior-project-manager"
-                    icon={<Briefcase className="h-5 w-5" />}
-                  />
-                  <FeaturedOpportunityCard
-                    title="Global Leadership Fellowship"
-                    company="International Development Institute"
-                    location="Multiple Locations"
-                    type="1 Year"
-                    category="Fellowship"
-                    deadline="June 30, 2025"
-                    featured={true}
-                    link="/opportunities/fellowships/global-leadership"
-                    icon={<Users className="h-5 w-5" />}
-                  />
-                  <FeaturedOpportunityCard
-                    title="Innovation Challenge 2025"
-                    company="Tech for Change"
-                    location="Virtual"
-                    type="Competition"
-                    category="Technology"
-                    deadline="July 15, 2025"
-                    featured={true}
-                    link="/opportunities/competitions/innovation-challenge"
-                    icon={<Award className="h-5 w-5" />}
-                  />
+                
+            
                 </div>
               </TabsContent>
 
@@ -187,7 +146,7 @@ export default function OpportunitiesPage() {
             <p className="max-w-2xl mx-auto mb-8 text-lg">
               Submit your resume to our talent pool, and we'll notify you when relevant opportunities become available.
             </p>
-            <Link href="/opportunities/submit-resume">
+            <Link href="/opportunities/post">
               <Button className="bg-[#121d3e] hover:bg-[#1a2a57] text-white px-8 py-6 rounded font-bold text-lg">
                 SUBMIT YOUR RESUME
               </Button>

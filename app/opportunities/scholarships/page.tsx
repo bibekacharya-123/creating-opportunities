@@ -46,70 +46,8 @@ export default function ScholarshipsPage() {
                   deadline: "July 5, 2025",
                   link: "/opportunities/scholarships/engineering",
                 },
-                {
-                  title: "Future Leaders Scholarship",
-                  organization: "Business School",
-                  location: "Multiple Campuses",
-                  level: "MBA",
-                  deadline: "June 15, 2025",
-                  link: "/opportunities/scholarships/future-leaders",
-                },
-                {
-                  title: "Creative Arts Scholarship",
-                  organization: "Arts Institute",
-                  location: "Kathmandu, Nepal",
-                  level: "Undergraduate",
-                  deadline: "May 30, 2025",
-                  link: "/opportunities/scholarships/creative-arts",
-                },
-                {
-                  title: "Medical Studies Scholarship",
-                  organization: "Health Sciences University",
-                  location: "Kathmandu, Nepal",
-                  level: "MBBS",
-                  deadline: "July 20, 2025",
-                  link: "/opportunities/scholarships/medical-studies",
-                },
-                {
-                  title: "Environmental Research Scholarship",
-                  organization: "Environmental Institute",
-                  location: "Multiple Locations",
-                  level: "PhD",
-                  deadline: "August 10, 2025",
-                  link: "/opportunities/scholarships/environmental-research",
-                },
-                {
-                  title: "Community Service Scholarship",
-                  organization: "Community Foundation",
-                  location: "Nepal",
-                  level: "Undergraduate",
-                  deadline: "June 25, 2025",
-                  link: "/opportunities/scholarships/community-service",
-                },
-                {
-                  title: "Digital Technology Scholarship",
-                  organization: "Tech Institute",
-                  location: "Online/Hybrid",
-                  level: "Undergraduate/Graduate",
-                  deadline: "July 15, 2025",
-                  link: "/opportunities/scholarships/digital-technology",
-                },
-                {
-                  title: "Law Studies Scholarship",
-                  organization: "Law School",
-                  location: "Kathmandu, Nepal",
-                  level: "LLB/LLM",
-                  deadline: "June 30, 2025",
-                  link: "/opportunities/scholarships/law-studies",
-                },
-                {
-                  title: "Agricultural Sciences Scholarship",
-                  organization: "Agricultural University",
-                  location: "Chitwan, Nepal",
-                  level: "Undergraduate/Graduate",
-                  deadline: "July 25, 2025",
-                  link: "/opportunities/scholarships/agricultural-sciences",
-                },
+            
+             
               ].map((scholarship, index) => (
                 <ScholarshipCard
                   key={index}

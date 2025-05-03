@@ -1,7 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PostJobForm } from "@/components/forms/post-job-form"
-import { PostInternshipForm } from "@/components/forms/post-internship-form"
 
 export default function PostOpportunityPage() {
   return (
@@ -20,97 +17,145 @@ export default function PostOpportunityPage() {
           <div className="max-w-4xl mx-auto">
             <Card>
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">What type of opportunity would you like to post?</CardTitle>
-                <CardDescription>Choose the type of opportunity you want to advertise on our platform.</CardDescription>
+                <CardTitle className="text-2xl font-semibold text-[#121d3e]">Post Opportunity Details</CardTitle>
+                <CardDescription className="text-gray-600">Fill in the details of the opportunity you want to advertise.</CardDescription>
               </CardHeader>
               <CardContent>
-                <Tabs defaultValue="job" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2 mb-8">
-                    <TabsTrigger value="job">Job</TabsTrigger>
-                    <TabsTrigger value="internship">Internship</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="job">
-                    <PostJobForm />
-                  </TabsContent>
-                  <TabsContent value="internship">
-                    <PostInternshipForm />
-                  </TabsContent>
-                </Tabs>
+                <form className="space-y-6">
+                  <div>
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                    <input 
+                      type="text" 
+                      id="title" 
+                      name="title" 
+                      placeholder="Enter the opportunity title" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="organization" className="block text-sm font-medium text-gray-700">Organization Name</label>
+                    <input 
+                      type="text" 
+                      id="organization" 
+                      name="organization" 
+                      placeholder="Enter the organization name" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="deadline" className="block text-sm font-medium text-gray-700">Deadline</label>
+                    <input 
+                      type="date" 
+                      id="deadline" 
+                      name="deadline" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="benefits" className="block text-sm font-medium text-gray-700">Benefits</label>
+                    <textarea 
+                      id="benefits" 
+                      name="benefits" 
+                      rows={3} 
+                      placeholder="List the benefits of this opportunity" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label htmlFor="eligibility" className="block text-sm font-medium text-gray-700">Eligibility</label>
+                    <textarea 
+                      id="eligibility" 
+                      name="eligibility" 
+                      rows={3} 
+                      placeholder="Specify eligibility criteria" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Full Description</label>
+                    <textarea 
+                      id="description" 
+                      name="description" 
+                      rows={5} 
+                      placeholder="Provide a detailed description of the opportunity" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
+                    <input 
+                      type="text" 
+                      id="country" 
+                      name="country" 
+                      placeholder="Enter the country" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="region" className="block text-sm font-medium text-gray-700">Region</label>
+                    <input 
+                      type="text" 
+                      id="region" 
+                      name="region" 
+                      placeholder="Enter the region" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="applicationList" className="block text-sm font-medium text-gray-700">Application List</label>
+                    <textarea 
+                      id="applicationList" 
+                      name="applicationList" 
+                      rows={3} 
+                      placeholder="Provide application instructions or links" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+                    <input 
+                      type="text" 
+                      id="category" 
+                      name="category" 
+                      placeholder="Enter the category of the opportunity" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="chooseCategory" className="block text-sm font-medium text-gray-700">Choose a Category</label>
+                    <select 
+                      id="chooseCategory" 
+                      name="chooseCategory" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200"
+                    >
+                      <option value="">Select a category</option>
+                      <option value="job">Job</option>
+                      <option value="internship">Internship</option>
+                      <option value="fellowship">Fellowship</option>
+                      <option value="scholarship">Scholarship</option>
+                      <option value="competition">Competition</option>
+                      <option value="workshop">Workshop</option>
+                      <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image</label>
+                    <input 
+                      type="file" 
+                      id="image" 
+                      name="image" 
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#1e3a8a] focus:border-[#1e3a8a] transition duration-200" 
+                    />
+                  </div>
+                  <button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-200"
+                  >
+                    Submit
+                  </button>
+                </form>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-[#121d3e] text-center mb-12">Why Post with Us?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="w-16 h-16 bg-[#0e9aa7] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Reach Qualified Candidates</h3>
-                <p className="text-gray-600">
-                  Connect with a diverse pool of talented individuals actively seeking opportunities.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="w-16 h-16 bg-[#0e9aa7] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Fast & Efficient</h3>
-                <p className="text-gray-600">
-                  Our streamlined process ensures your opportunities are posted quickly and efficiently.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="w-16 h-16 bg-[#0e9aa7] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Trusted Platform</h3>
-                <p className="text-gray-600">
-                  Join hundreds of employers who trust our platform for their recruitment needs.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
