@@ -97,12 +97,7 @@ export default function OpportunitiesPage() {
                   icon={<Sparkles className="h-8 w-8" />}
                   link="/opportunities/workshops"
                 />
-                <CategoryCard
-                  title="Miscellaneous"
-                  description="Other unique opportunities that don't fit standard categories"
-                  icon={<Clock className="h-8 w-8" />}
-                  link="/opportunities/miscellaneous"
-                />
+             
                 <CategoryCard
                   title="All Opportunities"
                   description="View all opportunities in one place"

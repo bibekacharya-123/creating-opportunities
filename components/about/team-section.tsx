@@ -1,29 +1,31 @@
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Facebook, Twitter, Linkedin } from "lucide-react"
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Facebook, Twitter, Linkedin } from "lucide-react";
 
 export default function TeamSection() {
   const teamMembers = [
     {
       name: "Prajwal Bhattarai",
       position: "Senior Strategic Advisor & CEO",
-      
+
       image: "/assets/prajwal.jpeg",
       social: {
         facebook: "https://www.facebook.com/prajwal7bhattarai",
-        twitter: "https://x.com/AcademicPrajwal?fbclid=IwAR0Qm_GYpYHS1KohRUWH_lo31I46S326Zv-JxHTCgyiaPXLjX4ACdKsz4Ms",
-        linkedin: "#",
+        twitter:
+          "https://x.com/AcademicPrajwal?fbclid=IwAR0Qm_GYpYHS1KohRUWH_lo31I46S326Zv-JxHTCgyiaPXLjX4ACdKsz4Ms",
+        linkedin: "https://www.linkedin.com/in/prajwalbhattarai7/",
       },
     },
     {
       name: " Sujit k. Chaudhary",
       position: " CEO & Managing Director",
-     
+
       image: "/assets/sujit.jpg",
       social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
+        facebook: "https://www.facebook.com/sujit.chaudhary.14661",
+        twitter:
+          "https://x.com/AcademicPrajwal?fbclid=IwY2xjawKDuwdleHRuA2FlbQIxMABicmlkETE3TjFjQkVYTmtKVnRYUkd6AR7Wy-Z8-ocoRuJmoN1qMJEPnUStLvhxxYrsC2iGNJlgWnJe5xMyI8M1g1oh3g_aem_-b4W89uu3Biad0fxnRMeDg",
+        linkedin: "https://www.linkedin.com/in/prajwalbhattarai7/",
       },
     },
     {
@@ -32,9 +34,9 @@ export default function TeamSection() {
       bio: "Rajesh specializes in building strategic partnerships with organizations across sectors.",
       image: "/assets/prassanna.jpg",
       social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
+        facebook: "https://www.facebook.com/prasanna.dhungel.5",
+        twitter: "https://x.com/PrasannaDhungel",
+        linkedin: "https://www.linkedin.com/in/prasanna-dhungel-923285178/",
       },
     },
     {
@@ -43,9 +45,9 @@ export default function TeamSection() {
       bio: "Priya oversees the development and implementation of our training and development programs.",
       image: "/assets/bibek.jpg",
       social: {
-        facebook: "#",
+        facebook: "https://www.facebook.com/bibek.yonzon.2025",
         twitter: "#",
-        linkedin: "#",
+        linkedin: "https://www.linkedin.com/in/bibek-yonjan-25ab021a7/",
       },
     },
     {
@@ -54,9 +56,10 @@ export default function TeamSection() {
       bio: "Michael leads our marketing efforts with innovative strategies to reach our target audience.",
       image: "/assets/assmit.jpg",
       social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
+        facebook: "https://www.facebook.com/ashmitayushjha",
+
+        twitter: "https://x.com/jha_ashmit",
+        linkedin: "https://www.linkedin.com/in/ashmit-kr-jha-aayush-a16385259/",
       },
     },
     {
@@ -65,42 +68,35 @@ export default function TeamSection() {
       bio: "Sarah helps individuals identify and pursue opportunities aligned with their career goals.",
       image: "/assets/ritika.jpg",
       social: {
-        facebook: "#",
+        facebook: "https://www.facebook.com/ritikaxshah",
         twitter: "#",
         linkedin: "#",
       },
     },
     {
-      name: "David Wilson",
-      position: "Technology Lead",
+      name: "Aayush Chaudhary ",
+      position: "Program Coordinator",
       bio: "David ensures our digital platforms provide seamless experiences for all users.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/assets/aayush.jpg",
       social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
+        facebook: "https://www.facebook.com/zen.ith.5623",
+        twitter: "https://x.com/aayush001?fbclid=IwY2xjawKDvY9leHRuA2FlbQIxMABicmlkETE3TjFjQkVYTmtKVnRYUkd6AR7NCy0yQv8O1fLbkzjvHEujJvIaKVs6MljQCjXb7Va5SliAiYlVJMnyv45lJg_aem_bdFeWgApvgBcOlFHuKgdew",
+        linkedin: "https://www.linkedin.com/in/aayush-chaudhary-7b5959213/",
       },
     },
-    {
-      name: "Anita Gurung",
-      position: "Community Engagement Manager",
-      bio: "Anita builds and nurtures relationships with communities across Nepal.",
-      image: "/placeholder.svg?height=300&width=300",
-      social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
-      },
-    },
-  ]
+   
+  ];
 
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#121d3e] mb-4">Meet Our Team</h2>
+          <h2 className="text-3xl font-bold text-[#121d3e] mb-4">
+            Meet Our Team
+          </h2>
           <p className="text-gray-700 max-w-3xl mx-auto">
-            Meet the dedicated professionals who work tirelessly to create opportunities and transform lives.
+            Meet the dedicated professionals who work tirelessly to create
+            opportunities and transform lives.
           </p>
         </div>
 
@@ -148,9 +144,12 @@ export default function TeamSection() {
                   </div>
                 </div>
                 <div className="p-4 text-center">
-                  <h3 className="font-bold text-lg text-[#121d3e]">{member.name}</h3>
-                  <p className="text-[#0e9aa7] font-medium mb-2">{member.position}</p>
-                 
+                  <h3 className="font-bold text-lg text-[#121d3e]">
+                    {member.name}
+                  </h3>
+                  <p className="text-[#0e9aa7] font-medium mb-2">
+                    {member.position}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -158,5 +157,5 @@ export default function TeamSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

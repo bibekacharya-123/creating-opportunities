@@ -2,30 +2,17 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import HeroSection from "@/components/hero-section";
 
 export default function WorkshopsPage() {
   return (
     <>
-      <div className="relative w-full h-[300px] md:h-[400px] bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white">
-        <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4 lg:w-2/3">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Workshops & Training</h1>
-          <p className="text-lg mb-8 max-w-3xl">
-            Enhance your skills and knowledge through hands-on workshops and specialized training programs.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/opportunities">
-              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
-                All Opportunities
-              </Button>
-            </Link>
-            <Link href="/opportunities/post">
-              <Button className="bg-[#0e9aa7] hover:bg-[#0c8b98] text-white">
-                Post a Workshop
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <HeroSection
+        title="Workshops Opportunities"
+        subtitle="Enhance your skills and knowledge with our curated workshops."
+        backgroundColor="#121d3e"
+      />
+    
 
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -41,7 +28,6 @@ export default function WorkshopsPage() {
                 description: "Learn data analysis techniques using Python in this comprehensive workshop.",
                 country: "USA",
                 region: "Virtual",
-                applicationList: ["Submit Resume", "Fill Application Form"],
                 image: "/images/workshop-python.jpg",
               },
             ].map((workshop, index) => (
@@ -58,6 +44,18 @@ export default function WorkshopsPage() {
                 image={workshop.image}
               />
             ))}
+          </div>
+          <div className="flex flex-wrap gap-4 mt-8">
+            <Link href="/opportunities">
+              <Button variant="outline" className="bg-transparent text-[#121d3e] border-[#121d3e] hover:bg-[#121d3e]/10">
+                All Opportunities
+              </Button>
+            </Link>
+            <Link href="/opportunities/post">
+              <Button className="bg-[#0e9aa7] hover:bg-[#0c8b98] text-white">
+                Post a Workshop
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

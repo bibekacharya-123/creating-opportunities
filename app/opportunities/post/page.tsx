@@ -1,12 +1,84 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+"use client";
+import { useEffect } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function PostOpportunityPage() {
+  useEffect(() => {
+    const canvas = document.getElementById("particleCanvas") as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
+    let particles: any[] = [];
+    const particleCount = 100;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = 500;
+    };
+
+    const createParticles = () => {
+      particles = Array.from({ length: particleCount }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        radius: Math.random() * 3 + 1,
+      }));
+    };
+
+    const drawParticles = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.fill();
+      });
+    };
+
+    const updateParticles = () => {
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      });
+    };
+
+    const animate = () => {
+      updateParticles();
+      drawParticles();
+      requestAnimationFrame(animate);
+    };
+
+    resizeCanvas();
+    createParticles();
+    animate();
+    window.addEventListener("resize", resizeCanvas);
+
+    return () => window.removeEventListener("resize", resizeCanvas);
+  }, []);
+
   return (
     <>
-      <div className="relative w-full h-[300px] md:h-[400px] bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white">
-        <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4 lg:w-2/3">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Post an Opportunity</h1>
-          <p className="text-lg mb-8 max-w-3xl">
+      <div className="relative w-full h-[375px] md:h-[450px] bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white overflow-hidden">
+        <canvas id="particleCanvas" className="absolute inset-0"></canvas>
+        <div className="absolute inset-0">
+          <div className="absolute w-[500px] h-[500px] bg-[#1e3a8a] opacity-30 rounded-full blur-3xl -top-20 -left-40 animate-pulse"></div>
+          <div className="absolute w-[400px] h-[400px] bg-[#121d3e] opacity-40 rounded-full blur-2xl -bottom-20 -right-20 animate-pulse"></div>
+        </div>
+        <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4 lg:w-2/3 z-10">
+          <div className="flex items-center space-x-2 mb-4 animate-fade-in-up">
+            <span className="bg-gradient-to-r from-yellow-400 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+              New
+            </span>
+            <span className="text-sm text-gray-300">Post your opportunity today!</span>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in-up">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-red-500">
+              Post an Opportunity
+            </span>
+          </h1>
+          <p className="text-lg mb-8 max-w-3xl animate-fade-in-up delay-200">
             Connect with talented individuals by posting your job or internship opportunities.
           </p>
         </div>
@@ -160,5 +232,5 @@ export default function PostOpportunityPage() {
         </div>
       </section>
     </>
-  )
+  );
 }

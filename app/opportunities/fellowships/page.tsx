@@ -1,42 +1,38 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { CalendarDays, MapPin, Users, ExternalLink, Search } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  CalendarDays,
+  MapPin,
+  Users,
+  ExternalLink,
+  Search,
+} from "lucide-react";
+import HeroSection from "@/components/hero-section";
 
 export default function FellowshipsPage() {
   return (
     <>
-      <div className="relative w-full h-[300px] md:h-[400px] bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white">
-        <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4 lg:w-2/3">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Fellowship Opportunities</h1>
-          <p className="text-lg mb-8 max-w-3xl">
-            Discover prestigious fellowship programs that offer professional development, research opportunities, and
-            leadership training.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/opportunities">
-              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
-                All Opportunities
-              </Button>
-            </Link>
-            <Link href="/opportunities/post">
-              <Button className="bg-[#0e9aa7] hover:bg-[#0c8b98] text-white">Post a Fellowship</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <HeroSection
+        title="Fellowship Opportunities"
+        subtitle="Kickstart your career with valuable Fellowship experiences across various fields."
+        backgroundColor="#121d3e"
+      />
 
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-         
-
-       
-
           <div>
-            <h2 className="text-2xl font-bold text-[#121d3e] mb-6">All Fellowship Opportunities</h2>
+            <h2 className="text-2xl font-bold text-[#121d3e] mb-6">
+              All Fellowship Opportunities
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
@@ -47,7 +43,6 @@ export default function FellowshipsPage() {
                   deadline: "May 25, 2025",
                   link: "/opportunities/fellowships/research-fellowship",
                 },
-                
               ].map((fellowship, index) => (
                 <FellowshipCard
                   key={index}
@@ -73,10 +68,12 @@ export default function FellowshipsPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-[#121d3e] mb-6">Why Apply for Fellowships?</h2>
+            <h2 className="text-3xl font-bold text-[#121d3e] mb-6">
+              Why Apply for Fellowships?
+            </h2>
             <p className="text-lg text-gray-600 mb-12">
-              Fellowships offer unique opportunities for professional growth, networking, and making a meaningful
-              impact.
+              Fellowships offer unique opportunities for professional growth,
+              networking, and making a meaningful impact.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -84,9 +81,12 @@ export default function FellowshipsPage() {
                 <div className="w-16 h-16 bg-[#0e9aa7] rounded-full flex items-center justify-center text-white mx-auto mb-4">
                   <Users size={28} />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Professional Development</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Professional Development
+                </h3>
                 <p className="text-gray-600">
-                  Gain specialized skills and knowledge through structured programs and mentorship.
+                  Gain specialized skills and knowledge through structured
+                  programs and mentorship.
                 </p>
               </div>
 
@@ -106,9 +106,12 @@ export default function FellowshipsPage() {
                     <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Financial Support</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Financial Support
+                </h3>
                 <p className="text-gray-600">
-                  Receive stipends, grants, or living allowances to focus on your work without financial stress.
+                  Receive stipends, grants, or living allowances to focus on
+                  your work without financial stress.
                 </p>
               </div>
 
@@ -132,7 +135,8 @@ export default function FellowshipsPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Global Network</h3>
                 <p className="text-gray-600">
-                  Connect with like-minded professionals and build relationships that last beyond the fellowship.
+                  Connect with like-minded professionals and build relationships
+                  that last beyond the fellowship.
                 </p>
               </div>
             </div>
@@ -142,21 +146,28 @@ export default function FellowshipsPage() {
 
       <section className="py-16 bg-[#121d3e] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8">Ready to Apply for a Fellowship?</h2>
+          <h2 className="text-3xl font-bold mb-8">
+            Ready to Apply for a Fellowship?
+          </h2>
           <p className="max-w-2xl mx-auto mb-8 text-lg">
-            Browse our current opportunities or sign up for alerts when new fellowships matching your interests become
-            available.
+            Browse our current opportunities or sign up for alerts when new
+            fellowships matching your interests become available.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-white text-[#121d3e] hover:bg-gray-100">Browse All Fellowships</Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button className="bg-white text-[#121d3e] hover:bg-gray-100">
+              Browse All Fellowships
+            </Button>
+            <Button
+              variant="outline"
+              className="border-white text-white hover:bg-white/10"
+            >
               Get Email Alerts
             </Button>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }
 
 function FellowshipCard({
@@ -167,12 +178,12 @@ function FellowshipCard({
   deadline,
   link,
 }: {
-  title: string
-  organization: string
-  location: string
-  duration: string
-  deadline: string
-  link: string
+  title: string;
+  organization: string;
+  location: string;
+  duration: string;
+  deadline: string;
+  link: string;
 }) {
   return (
     <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
@@ -204,7 +215,7 @@ function FellowshipCard({
         </Link>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 function FeaturedFellowshipCard({
@@ -216,13 +227,13 @@ function FeaturedFellowshipCard({
   deadline,
   link,
 }: {
-  title: string
-  organization: string
-  location: string
-  duration: string
-  stipend: string
-  deadline: string
-  link: string
+  title: string;
+  organization: string;
+  location: string;
+  duration: string;
+  stipend: string;
+  deadline: string;
+  link: string;
 }) {
   return (
     <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 relative overflow-hidden border-2 border-[#0e9aa7]">
@@ -274,5 +285,5 @@ function FeaturedFellowshipCard({
         </Link>
       </CardFooter>
     </Card>
-  )
+  );
 }

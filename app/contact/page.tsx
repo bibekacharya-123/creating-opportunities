@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import HeroSection from "@/components/hero-section"
 import { AnimatedSection } from "@/components/ui/animated-section"
+import Image from "next/image"
 
 export default function ContactPage() {
   return (
@@ -66,8 +67,12 @@ export default function ContactPage() {
 
       {/* Contact Form and Info */}
       <AnimatedSection animation="slide-in-left" delay={0.3}>
-        <section id="contact-form" className="py-16 bg-gray-100">
-          <div className="container mx-auto px-4">
+        <section
+          id="contact-form"
+          className="py-16 bg-cover bg-center"
+          style={{ backgroundImage: "url('/assets/contact.jpg')" }}
+        >
+          <div className="container mx-auto px-4 bg-white bg-opacity-10 p-8 rounded-lg shadow-md">
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <h2 className="text-3xl font-bold mb-6 text-[#121d3e]">Send Us a Message</h2>
@@ -85,7 +90,7 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold">Email</h3>
                         <a href="mailto:info@creatingoppo.com" className="text-gray-600 hover:text-[#0e76bc]">
-                          info@creatingoppo.com
+                        creatingoppo@gmail.com
                         </a>
                       </div>
                     </div>
@@ -94,7 +99,7 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold">Phone</h3>
                         <a href="tel:+1234567890" className="text-gray-600 hover:text-[#0e76bc]">
-                          +1 (234) 567-890
+                        +977 9808068870
                         </a>
                       </div>
                     </div>
@@ -141,7 +146,7 @@ export default function ContactPage() {
 
       {/* Newsletter Section */}
       <AnimatedSection animation="fade-in" delay={0.2}>
-        <section className="py-16 bg-[#121d3e] text-white">
+        <section className="py-16 bg-white text-gray-800">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-6">Stay Updated</h2>
@@ -149,8 +154,8 @@ export default function ContactPage() {
                 Subscribe to our newsletter to receive updates on our programs, events, and opportunities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <Input type="email" placeholder="Enter your email" className="bg-white text-gray-800" />
-                <Button className="bg-[#e74c3c] hover:bg-[#c0392b]">
+                <Input type="email" placeholder="Enter your email" className="bg-gray-100 text-gray-800" />
+                <Button className="bg-[#0e76bc] hover:bg-[#0c5a8a] text-white">
                   <Send className="h-4 w-4 mr-2" />
                   Subscribe
                 </Button>

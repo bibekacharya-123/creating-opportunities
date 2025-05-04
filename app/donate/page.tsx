@@ -41,7 +41,7 @@ export default function DonatePage() {
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div>
                     <Image
-                      src="/placeholder.svg?height=300&width=400"
+                      src="/assets/donate.jpg"
                       alt="Students in a classroom"
                       width={400}
                       height={300}

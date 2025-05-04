@@ -1,41 +1,46 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { CalendarDays, MapPin, ExternalLink, Search, GraduationCap } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  CalendarDays,
+  MapPin,
+  ExternalLink,
+  Search,
+  GraduationCap,
+} from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import HeroSection from "@/components/hero-section";
 
 export default function ScholarshipsPage() {
   return (
     <>
-      <div className="relative w-full h-[300px] md:h-[400px] bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white">
-        <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4 lg:w-2/3">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Scholarship Opportunities</h1>
-          <p className="text-lg mb-8 max-w-3xl">
-            Discover scholarships to fund your education and achieve your academic goals.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/opportunities">
-              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
-                All Opportunities
-              </Button>
-            </Link>
-            <Link href="/opportunities/post">
-              <Button className="bg-[#0e9aa7] hover:bg-[#0c8b98] text-white">Post a Scholarship</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <HeroSection
+        title="Scholarship Opportunities"
+        subtitle="Kickstart your career with valuable Scholarship experiences across various fields."
+        backgroundColor="#121d3e"
+      />
 
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          
-
-      
-
           <div>
-            <h2 className="text-2xl font-bold text-[#121d3e] mb-6">All Scholarship Opportunities</h2>
+            <h2 className="text-2xl font-bold text-[#121d3e] mb-6">
+              All Scholarship Opportunities
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
@@ -46,8 +51,6 @@ export default function ScholarshipsPage() {
                   deadline: "July 5, 2025",
                   link: "/opportunities/scholarships/engineering",
                 },
-            
-             
               ].map((scholarship, index) => (
                 <ScholarshipCard
                   key={index}
@@ -73,9 +76,12 @@ export default function ScholarshipsPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-[#121d3e] mb-6">Scholarship Application Tips</h2>
+            <h2 className="text-3xl font-bold text-[#121d3e] mb-6">
+              Scholarship Application Tips
+            </h2>
             <p className="text-lg text-gray-600 mb-12">
-              Increase your chances of securing a scholarship with these helpful tips.
+              Increase your chances of securing a scholarship with these helpful
+              tips.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -101,8 +107,8 @@ export default function ScholarshipsPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Prepare Early</h3>
                 <p className="text-gray-600">
-                  Start your application well before the deadline to ensure you have time to gather all required
-                  documents.
+                  Start your application well before the deadline to ensure you
+                  have time to gather all required documents.
                 </p>
               </div>
 
@@ -123,10 +129,12 @@ export default function ScholarshipsPage() {
                     <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Craft a Strong Essay</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Craft a Strong Essay
+                </h3>
                 <p className="text-gray-600">
-                  Write a compelling personal statement that highlights your achievements, goals, and why you deserve
-                  the scholarship.
+                  Write a compelling personal statement that highlights your
+                  achievements, goals, and why you deserve the scholarship.
                 </p>
               </div>
 
@@ -149,9 +157,12 @@ export default function ScholarshipsPage() {
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Get Strong References</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Get Strong References
+                </h3>
                 <p className="text-gray-600">
-                  Request recommendation letters from teachers, professors, or employers who know your abilities well.
+                  Request recommendation letters from teachers, professors, or
+                  employers who know your abilities well.
                 </p>
               </div>
             </div>
@@ -161,20 +172,28 @@ export default function ScholarshipsPage() {
 
       <section className="py-16 bg-[#121d3e] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8">Need Help With Your Scholarship Application?</h2>
+          <h2 className="text-3xl font-bold mb-8">
+            Need Help With Your Scholarship Application?
+          </h2>
           <p className="max-w-2xl mx-auto mb-8 text-lg">
-            Our team can provide guidance on finding and applying for scholarships that match your profile.
+            Our team can provide guidance on finding and applying for
+            scholarships that match your profile.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-white text-[#121d3e] hover:bg-gray-100">Schedule a Consultation</Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button className="bg-white text-[#121d3e] hover:bg-gray-100">
+              Schedule a Consultation
+            </Button>
+            <Button
+              variant="outline"
+              className="border-white text-white hover:bg-white/10"
+            >
               Join Our Scholarship Workshop
             </Button>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }
 
 function ScholarshipCard({
@@ -185,12 +204,12 @@ function ScholarshipCard({
   deadline,
   link,
 }: {
-  title: string
-  organization: string
-  location: string
-  level: string
-  deadline: string
-  link: string
+  title: string;
+  organization: string;
+  location: string;
+  level: string;
+  deadline: string;
+  link: string;
 }) {
   return (
     <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
@@ -222,7 +241,7 @@ function ScholarshipCard({
         </Link>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 function FeaturedScholarshipCard({
@@ -234,13 +253,13 @@ function FeaturedScholarshipCard({
   deadline,
   link,
 }: {
-  title: string
-  organization: string
-  location: string
-  amount: string
-  level: string
-  deadline: string
-  link: string
+  title: string;
+  organization: string;
+  location: string;
+  amount: string;
+  level: string;
+  deadline: string;
+  link: string;
 }) {
   return (
     <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 relative overflow-hidden border-2 border-[#0e9aa7]">
@@ -292,5 +311,5 @@ function FeaturedScholarshipCard({
         </Link>
       </CardFooter>
     </Card>
-  )
+  );
 }

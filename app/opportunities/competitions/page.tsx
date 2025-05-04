@@ -4,30 +4,17 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { CalendarDays, MapPin, Award, ExternalLink, Search, Trophy } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+import HeroSection from "@/components/hero-section";
 
 export default function CompetitionsPage() {
   return (
     <>
-      <div className="relative w-full h-[300px] md:h-[400px] bg-gradient-to-r from-[#121d3e] to-[#1e3a8a] text-white">
-        <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4 lg:w-2/3">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Competitions</h1>
-          <p className="text-lg mb-8 max-w-3xl">
-            Showcase your skills, win prizes, and gain recognition through these exciting competitions.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/opportunities">
-              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
-                All Opportunities
-              </Button>
-            </Link>
-            <Link href="/opportunities/post">
-              <Button className="bg-[#0e9aa7] hover:bg-[#0c8b98] text-white">Post a Competition</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-
+      <HeroSection
+             title="Competitions Opportunities"
+             subtitle="Kickstart your career with valuable competitions experiences across various fields."
+             backgroundColor="#121d3e"
+           />
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
         

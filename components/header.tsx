@@ -162,11 +162,7 @@ export default function Header() {
             />
 
             <MobileNavAccordion label="Events & Projects">
-              <MobileNavLink
-                href="/events-projects"
-                label="All Events & Projects"
-                onClick={() => setMobileMenuOpen(false)}
-              />
+            
               <MobileNavLink
                 href="/events-projects/our-projects"
                 label="Our Projects"
@@ -177,11 +173,7 @@ export default function Header() {
                 label="Our Initiatives"
                 onClick={() => setMobileMenuOpen(false)}
               />
-              <MobileNavLink
-                href="/events-projects/collaborative-events"
-                label="Collaborative Events"
-                onClick={() => setMobileMenuOpen(false)}
-              />
+              
             </MobileNavAccordion>
 
             <MobileNavAccordion label="Our Portfolio">
@@ -208,11 +200,7 @@ export default function Header() {
                 label="Services"
                 onClick={() => setMobileMenuOpen(false)}
               />
-              <MobileNavLink
-                href="/services/extended-services"
-                label="Extended Services"
-                onClick={() => setMobileMenuOpen(false)}
-              />
+             
               <MobileNavLink
                 href="/services/merchandise"
                 label="Merchandise"
@@ -269,11 +257,7 @@ export default function Header() {
                 label="Workshops"
                 onClick={() => setMobileMenuOpen(false)}
               />
-              <MobileNavLink
-                href="/opportunities/miscellaneous"
-                label="Miscellaneous"
-                onClick={() => setMobileMenuOpen(false)}
-              />
+             
               <MobileNavLink
                 href="/opportunities/post"
                 label="Post Opportunity"
