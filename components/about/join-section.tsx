@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 
 export default function JoinSection() {
   return (
-    <section className="py-16 bg-[#121d3e] text-white">
+    <section className="py-16 bg-white text-[#121d3e]">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-8">Join Our Journey</h2>
         <p className="max-w-2xl mx-auto mb-8 text-lg">
@@ -20,7 +20,7 @@ export default function JoinSection() {
           <Link href="/contact">
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-[#121d3e] px-8 py-6 rounded font-bold text-lg"
+              className="border-[#121d3e] text-[#121d3e] hover:bg-[#121d3e] hover:text-white px-8 py-6 rounded font-bold text-lg"
             >
               CONTACT US
             </Button>

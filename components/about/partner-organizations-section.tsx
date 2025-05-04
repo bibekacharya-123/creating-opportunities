@@ -38,7 +38,7 @@ export default function PartnerOrganizationsSection() {
             <Card className="border-none shadow-lg overflow-hidden">
               <CardContent className="p-0">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/assets/partnerorgn.jpg"
                   alt="Partner Organizations"
                   width={600}
                   height={400}

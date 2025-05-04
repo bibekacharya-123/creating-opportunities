@@ -5,25 +5,25 @@ import { Quote } from "lucide-react"
 export default function MessagesSection() {
   const messages = [
     {
-      role: "CEO",
-      name: "John Doe",
+      role: "CEO & COFOUNDER",
+      name: "Sujit Kumar Chaudary",
       message:
-        "At Creating Opportunities International, we believe in the power of opportunities to transform lives. Our mission is to connect talented individuals with opportunities that align with their aspirations and potential. We are committed to fostering growth, nurturing aspirations, and creating pathways to success for countless individuals across Nepal and beyond.",
-      image: "/placeholder.svg?height=200&width=200",
+        "At Creating Opportunities, we believe that every person deserves access to opportunities to reach their full potential and live more fulfilling lives However, unequal access persists, and systemic barriers prevent individuals from accessing opportunities in education, employment, entrepreneurship, wellbeing, and beyond.That is why we built Creating Opportunities – to connect people with life-changing experiences that empower personal growth, career development, and global understanding. Through our global platform, we are breaking down barriers to provide diverse, meaningful opportunities..",
+      image: "/assets/sujit.jpg", 
     },
     {
       role: "Strategic Advisor",
-      name: "Jane Smith",
+      name: "Prajwal Bhattrai",
       message:
-        "Our strategic vision is to create a platform that not only connects individuals with opportunities but also equips them with the skills and knowledge they need to succeed. We are dedicated to building partnerships and collaborations that expand the scope and impact of our work, reaching more individuals and communities in need of support.",
-      image: "/placeholder.svg?height=200&width=200",
+        "As a Project Management Strategist and Youth Mentor, I wholeheartedly endorse the mission of Creating Opportunities International (CO) in bridging the information gap among young people globally. CO’s commitment to providing a diverse array of educational and developmental opportunities is commendable and has the potential to catalyze positive change on a global scale.The transformative power of educational opportunities for young individuals cannot be overstated. Through CO’s extensive database, encompassing scholarships, training, conferences, fellowships, grants, and employment avenues, young people are empowered to cultivate their skills, expand their knowledge, and effect meaningful change in their communities and beyond. By facilitating access to such opportunities, CO is playing a pivotal role in fostering equity and justice worldwide.",
+      image: "/assets/prajwal.jpeg",
     },
     {
       role: "Project Advisor",
-      name: "Rajesh Sharma",
+      name: "Anil Pokhrel",
       message:
-        "Our projects are designed with a focus on sustainability and long-term impact. We work closely with communities, organizations, and individuals to identify needs and develop initiatives that address these needs effectively. Our approach is collaborative, inclusive, and centered on creating lasting positive change.",
-      image: "/placeholder.svg?height=200&width=200",
+        "Creating opportunities for youngsters is essential for their personal and professional development, as well as for the overall progress of society and the economy. Young people are more likely to become successful, productive, and involved members of society when they are given opportunities to explore their interests, acquire skills, and participate in meaningful activities. Creating opportunities for kids also assists in reducing poverty, inequality, and social exclusion, as well as contributing to a prosperous and sustainable future for all.As a youth trainer, he has worked directly with young people to help them develop the skills and knowledge they need to succeed in their personal and professional lives, who has a deep understanding of the challenges facing young people today, and he is committed to helping them overcome these challenges and reach their full potential.His expertise and contribution have been fundamental to the expansion of Creating Opportunities International. He has played a critical role in creating COI’s strategy, initiatives, and effects as a senior Project adviser and youth trainer. His dedication to empowering young people via technology and education has been critical in furthering COI’s purpose and making a positive influence on the lives of young people all around the world.",
+      image: "/assets/anil.jpg",
     },
   ]
 

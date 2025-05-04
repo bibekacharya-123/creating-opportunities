@@ -101,8 +101,20 @@ export default function MerchandisePage() {
       <HeroSection
         title="Our Merchandise"
         subtitle="High-quality products that represent our mission and values."
-        backgroundColor="#121d3e"
-      />
+        className="relative bg-cover bg-center h-[400px] flex items-center justify-center"
+        style={{
+          backgroundImage: "url('/assets/services/merchan.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="bg-black bg-opacity-50 text-white p-8 rounded-lg text-center">
+          <h1 className="text-4xl font-bold mb-4">Our Merchandise</h1>
+          <p className="text-lg">
+            High-quality products that represent our mission and values.
+          </p>
+        </div>
+      </HeroSection>
 
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -120,13 +132,7 @@ export default function MerchandisePage() {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-lg">
-              <Image
-                src="/placeholder.svg?height=400&width=600"
-                alt="Merchandise Collection"
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
+              
             </div>
           </div>
 

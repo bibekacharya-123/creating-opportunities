@@ -7,7 +7,7 @@ export default function WhoWeAreSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="rounded-lg overflow-hidden shadow-lg">
             <Image
-              src="/placeholder.svg?height=400&width=600"
+              src="/assets/whychoose.jpg"
               alt="Who We Are"
               width={600}
               height={400}
@@ -15,7 +15,7 @@ export default function WhoWeAreSection() {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold text-[#121d3e] mb-6">WHO WE ARE</h2>
+            <h2 className="text-3xl font-bold text-[#121d3e] mb-6">WHO CHOOSE US</h2>
             <p className="text-gray-700 mb-4">
               Creating Opportunities International is a dynamic platform dedicated to connecting talented individuals
               with life-changing opportunities. We are a team of passionate professionals committed to fostering growth,

@@ -5,40 +5,40 @@ import { ExternalLink, Calendar } from "lucide-react"
 export default function MediaMentionsSection() {
   const mediaMentions = [
     {
-      title: "Creating Opportunities International Launches New Initiative",
+      title: "Harmony Rising: Unveiling Nepal’s Path to Peace and Prosperity”",
       publication: "Nepal Times",
       date: "March 15, 2023",
       excerpt:
         "Creating Opportunities International has launched a new initiative aimed at connecting young professionals with international career opportunities...",
-      link: "#",
-      logo: "/placeholder.svg?height=60&width=120",
+      link: "https://www.tilottamacitynews.com/2022-07-31-083611",
+      logo: "/assets/harmony.jpg",
     },
     {
-      title: "Local Organization Makes Global Impact",
+      title: "Hunger walk draws attention to climate change, food insecurity",
       publication: "Kathmandu Post",
       date: "January 10, 2023",
       excerpt:
         "Creating Opportunities International has been recognized for its significant impact in creating educational and career pathways for Nepali youth...",
-      link: "#",
-      logo: "/placeholder.svg?height=60&width=120",
+      link: "https://nepalsamaya.com/lumbini/2022-07-24-171007",
+      logo: "/assets/hunger.jpeg",
     },
     {
-      title: "Interview with the CEO of Creating Opportunities",
+      title: "Project Shikshya by RONB & 100’s Group, Sower Action Nepal, HK & Creating Opportunity.",
       publication: "Business Nepal",
       date: "November 5, 2022",
       excerpt:
         "In an exclusive interview, the CEO of Creating Opportunities International discusses the organization's vision, achievements, and future plans...",
-      link: "#",
-      logo: "/placeholder.svg?height=60&width=120",
+      link: "https://www.facebook.com/photo/?fbid=651328333695733&set=a.614071344088099",
+      logo: "/assets/sikshya.jpeg",
     },
     {
-      title: "Creating Opportunities Wins Social Impact Award",
+      title: "Entrance exam for +2 Scholarship by RONB & 100’s Group",
       publication: "Global Development News",
       date: "September 20, 2022",
       excerpt:
         "Creating Opportunities International has been awarded the prestigious Social Impact Award for its innovative approach to opportunity creation and access...",
-      link: "#",
-      logo: "/placeholder.svg?height=60&width=120",
+      link: "https://www.facebook.com/photo/?fbid=833137454871613&set=a.730927318425961",
+      logo: "/assets/entrance.jpeg",
     },
   ]
 
@@ -61,19 +61,16 @@ export default function MediaMentionsSection() {
                     <Image
                       src={mention.logo || "/placeholder.svg"}
                       alt={mention.publication}
-                      width={120}
-                      height={60}
+                      width={170} // Increased by 50px
+                      height={110} // Increased by 50px
                       className="w-full h-auto"
                     />
                   </div>
                   <div>
-                    <div className="flex items-center text-gray-500 text-sm mb-2">
-                      <Calendar size={14} className="mr-1" />
-                      {mention.date}
-                    </div>
+                  
                     <h3 className="font-bold text-lg text-[#121d3e] mb-1">{mention.title}</h3>
-                    <p className="text-[#0e9aa7] text-sm mb-2">{mention.publication}</p>
-                    <p className="text-gray-700 mb-3">{mention.excerpt}</p>
+                    
+                  
                     <a
                       href={mention.link}
                       className="inline-flex items-center text-[#0e9aa7] hover:underline"

@@ -10,10 +10,10 @@ import WhyChooseCreatingOpportunitiesSection from "@/components/about/why-choose
 import PartnerOrganizationsSection from "@/components/about/partner-organizations-section"
 import OurImpactSection from "@/components/about/our-impact-section"
 import TeamSection from "@/components/about/team-section"
-import PartnersSection from "@/components/about/partners-section"
+
 import NetworkSection from "@/components/about/network-section"
 import KudosMentionsSection from "@/components/about/kudos-mentions-section"
-import TestimonialsSection from "@/components/about/testimonials-section"
+
 import FAQSection from "@/components/about/faq-section"
 import MediaMentionsSection from "@/components/about/media-mentions-section"
 import JoinSection from "@/components/about/join-section"
@@ -74,9 +74,7 @@ export default function AboutPage() {
         <TeamSection />
       </AnimatedSection>
 
-      <AnimatedSection animation="fade-up" delay={0.3}>
-        <PartnersSection />
-      </AnimatedSection>
+    
 
       <AnimatedSection animation="slide-in-right" delay={0.2}>
         <NetworkSection />
@@ -86,9 +84,7 @@ export default function AboutPage() {
         <KudosMentionsSection />
       </AnimatedSection>
 
-      <AnimatedSection animation="zoom-in" delay={0.2}>
-        <TestimonialsSection />
-      </AnimatedSection>
+   
 
       <AnimatedSection animation="fade-up" delay={0.3}>
         <FAQSection />

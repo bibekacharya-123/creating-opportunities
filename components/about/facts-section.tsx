@@ -30,7 +30,10 @@ export default function FactsSection() {
   ]
 
   return (
-    <section className="py-16 bg-[#121d3e] text-white">
+    <section
+      className="py-16 text-white"
+      style={{ backgroundImage: "url('/assets/footer.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Facts About Us</h2>

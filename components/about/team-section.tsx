@@ -5,10 +5,21 @@ import { Facebook, Twitter, Linkedin } from "lucide-react"
 export default function TeamSection() {
   const teamMembers = [
     {
-      name: "John Doe",
-      position: "Founder & CEO",
-      bio: "John has over 15 years of experience in career development and opportunity creation.",
-      image: "/placeholder.svg?height=300&width=300",
+      name: "Prajwal Bhattarai",
+      position: "Senior Strategic Advisor & CEO",
+      
+      image: "/assets/prajwal.jpeg",
+      social: {
+        facebook: "https://www.facebook.com/prajwal7bhattarai",
+        twitter: "https://x.com/AcademicPrajwal?fbclid=IwAR0Qm_GYpYHS1KohRUWH_lo31I46S326Zv-JxHTCgyiaPXLjX4ACdKsz4Ms",
+        linkedin: "#",
+      },
+    },
+    {
+      name: " Sujit k. Chaudhary",
+      position: " CEO & Managing Director",
+     
+      image: "/assets/sujit.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -16,21 +27,10 @@ export default function TeamSection() {
       },
     },
     {
-      name: "Jane Smith",
-      position: "Chief Operations Officer",
-      bio: "Jane brings extensive expertise in organizational management and strategic planning.",
-      image: "/placeholder.svg?height=300&width=300",
-      social: {
-        facebook: "#",
-        twitter: "#",
-        linkedin: "#",
-      },
-    },
-    {
-      name: "Rajesh Sharma",
-      position: "Head of Partnerships",
+      name: "Prasanna Dhungel ",
+      position: "Head of IT",
       bio: "Rajesh specializes in building strategic partnerships with organizations across sectors.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/assets/prassanna.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -38,10 +38,10 @@ export default function TeamSection() {
       },
     },
     {
-      name: "Priya Patel",
-      position: "Director of Programs",
+      name: "Bibek Yonzon",
+      position: "Legal Counselors",
       bio: "Priya oversees the development and implementation of our training and development programs.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/assets/bibek.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -49,10 +49,10 @@ export default function TeamSection() {
       },
     },
     {
-      name: "Michael Chen",
-      position: "Marketing Director",
+      name: "Ashmit Kumar Jha",
+      position: " Research Officer / Program Coordinator",
       bio: "Michael leads our marketing efforts with innovative strategies to reach our target audience.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/assets/assmit.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -60,10 +60,10 @@ export default function TeamSection() {
       },
     },
     {
-      name: "Sarah Johnson",
-      position: "Career Development Specialist",
+      name: "Ritika Shah",
+      position: "Communication Officer",
       bio: "Sarah helps individuals identify and pursue opportunities aligned with their career goals.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/assets/ritika.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -150,7 +150,7 @@ export default function TeamSection() {
                 <div className="p-4 text-center">
                   <h3 className="font-bold text-lg text-[#121d3e]">{member.name}</h3>
                   <p className="text-[#0e9aa7] font-medium mb-2">{member.position}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
+                 
                 </div>
               </CardContent>
             </Card>
