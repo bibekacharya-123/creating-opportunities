@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useRef, useState } from "react"
 import { motion, useAnimation, useMotionValue, useSpring, useTransform } from "framer-motion"
 
@@ -20,15 +22,15 @@ export default function HeroSection({
   const sectionRef = useRef<HTMLElement>(null)
   const controls = useAnimation()
 
-  // Mouse parallax effect
+  // Mouse parallax effect with enhanced sensitivity
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
   const smoothMouseX = useSpring(mouseX, { stiffness: 300, damping: 30 })
   const smoothMouseY = useSpring(mouseY, { stiffness: 300, damping: 30 })
 
-  const moveX = useTransform(smoothMouseX, [-500, 500], [-15, 15])
-  const moveY = useTransform(smoothMouseY, [-500, 500], [-15, 15])
+  const moveX = useTransform(smoothMouseX, [-500, 500], [-25, 25]) // Enhanced movement range
+  const moveY = useTransform(smoothMouseY, [-500, 500], [-25, 25]) // Enhanced movement range
 
   // Scroll parallax effect
   const [scrollY, setScrollY] = useState(0)
@@ -36,7 +38,7 @@ export default function HeroSection({
     setScrollY(window.scrollY)
   }
 
-  // Advanced particle system
+  // Enhanced particle system with more variety
   const [particles, setParticles] = useState<
     Array<{
       x: number
@@ -46,41 +48,83 @@ export default function HeroSection({
       opacity: number
       color: string
       direction: number
+      pulse: boolean
+      pulseSpeed: number
+      trail: boolean
+      trailLength: number
     }>
   >([])
 
-  // 3D objects rotation state
+  // 3D objects rotation state with enhanced dynamics
   const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 })
 
+  // Magnetic effect for buttons
+  const primaryBtnRef = useRef<HTMLButtonElement>(null)
+  const secondaryBtnRef = useRef<HTMLButtonElement>(null)
+
+  // Text animation sequence control
+  const [textAnimationComplete, setTextAnimationComplete] = useState(false)
+
+  // Magnetic button effect
+  const applyMagneticEffect = (e: MouseEvent, btnRef: React.RefObject<HTMLButtonElement>, strength = 0.5) => {
+    if (!btnRef.current) return
+
+    const rect = btnRef.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+
+    const distanceX = e.clientX - centerX
+    const distanceY = e.clientY - centerY
+
+    // Calculate distance from center
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+    const radius = Math.max(rect.width, rect.height) * 1.5
+
+    if (distance < radius) {
+      // Apply magnetic pull based on distance
+      const pull = (radius - distance) / radius
+      btnRef.current.style.transform = `translate(${distanceX * strength * pull}px, ${distanceY * strength * pull}px) scale(${1 + pull * 0.05})`
+    } else {
+      btnRef.current.style.transform = "translate(0, 0) scale(1)"
+    }
+  }
+
   useEffect(() => {
-    // Initialize advanced particles with varied behaviors
-    const newParticles = Array.from({ length: 80 }, () => {
+    // Initialize enhanced particles with varied behaviors
+    const newParticles = Array.from({ length: 120 }, () => {
+      // Increased particle count
       const colorChoice = Math.random()
       let color
 
-      if (colorChoice < 0.3) {
+      if (colorChoice < 0.25) {
         color = "#4a5f9d" // Blue accent
-      } else if (colorChoice < 0.6) {
+      } else if (colorChoice < 0.5) {
         color = "#8a6fbd" // Purple accent
-      } else if (colorChoice < 0.9) {
+      } else if (colorChoice < 0.75) {
         color = "#6a7fbd" // Light blue accent
-      } else {
+      } else if (colorChoice < 0.95) {
         color = "#ffffff" // White
+      } else {
+        color = "#ff9d4a" // Accent highlight (orange)
       }
 
       return {
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 5 + 1,
-        speed: Math.random() * 0.4 + 0.1,
+        size: Math.random() * 6 + 1, // Larger particles
+        speed: Math.random() * 0.5 + 0.1,
         opacity: Math.random() * 0.7 + 0.2,
         color,
         direction: Math.random() > 0.5 ? 1 : -1,
+        pulse: Math.random() > 0.7, // Some particles will pulse
+        pulseSpeed: Math.random() * 0.02 + 0.01,
+        trail: Math.random() > 0.8, // Some particles will have trails
+        trailLength: Math.floor(Math.random() * 3) + 1,
       }
     })
     setParticles(newParticles)
 
-    // Handle mouse move for parallax
+    // Handle mouse move for parallax and magnetic effects
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e
       const rect = sectionRef.current?.getBoundingClientRect()
@@ -88,22 +132,46 @@ export default function HeroSection({
         mouseX.set(clientX - rect.left - rect.width / 2)
         mouseY.set(clientY - rect.top - rect.height / 2)
 
-        // Update 3D object rotation based on mouse position
-        const rotX = (clientY - rect.top - rect.height / 2) / 20
-        const rotY = (clientX - rect.left - rect.width / 2) / 20
+        // Update 3D object rotation based on mouse position with enhanced sensitivity
+        const rotX = (clientY - rect.top - rect.height / 2) / 15
+        const rotY = (clientX - rect.left - rect.width / 2) / 15
         setRotation({ x: rotX, y: rotY, z: 0 })
+
+        // Apply magnetic effect to buttons
+        applyMagneticEffect(e, primaryBtnRef, 0.3)
+        applyMagneticEffect(e, secondaryBtnRef, 0.2)
       }
     }
 
-    // Animate particles with varied behaviors
+    // Reset button position when mouse leaves
+    const handleMouseLeave = () => {
+      if (primaryBtnRef.current) {
+        primaryBtnRef.current.style.transform = "translate(0, 0) scale(1)"
+      }
+      if (secondaryBtnRef.current) {
+        secondaryBtnRef.current.style.transform = "translate(0, 0) scale(1)"
+      }
+    }
+
+    // Animate particles with varied behaviors and effects
     let animationFrameId: number
     const animateParticles = () => {
       setParticles((prevParticles) =>
-        prevParticles.map((particle) => ({
-          ...particle,
-          x: particle.x + Math.sin(Date.now() * 0.001) * 0.1 * particle.direction,
-          y: (particle.y - particle.speed) % 100,
-        })),
+        prevParticles.map((particle) => {
+          // Calculate new opacity for pulsing particles
+          let newOpacity = particle.opacity
+          if (particle.pulse) {
+            newOpacity = particle.opacity + Math.sin(Date.now() * particle.pulseSpeed) * 0.2
+            newOpacity = Math.max(0.1, Math.min(0.9, newOpacity))
+          }
+
+          return {
+            ...particle,
+            x: particle.x + Math.sin(Date.now() * 0.001) * 0.15 * particle.direction,
+            y: (particle.y - particle.speed) % 100,
+            opacity: newOpacity,
+          }
+        }),
       )
       animationFrameId = requestAnimationFrame(animateParticles)
     }
@@ -112,27 +180,52 @@ export default function HeroSection({
     setIsVisible(true)
     controls.start("visible")
     window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mouseleave", handleMouseLeave)
     window.addEventListener("scroll", handleScroll)
     animationFrameId = requestAnimationFrame(animateParticles)
+
+    // Set text animation complete after delay
+    const timer = setTimeout(() => {
+      setTextAnimationComplete(true)
+    }, 2000)
 
     // Cleanup
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mouseleave", handleMouseLeave)
       window.removeEventListener("scroll", handleScroll)
       cancelAnimationFrame(animationFrameId)
+      clearTimeout(timer)
     }
   }, [mouseX, mouseY, controls])
+
+  // Text animation variants
+  const titleCharVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.8,
+        ease: [0.215, 0.61, 0.355, 1],
+      },
+    }),
+  }
+
+  // Split title into characters for animation
+  const titleChars = title.split("")
 
   return (
     <section
       ref={sectionRef}
       className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
-      style={{ perspective: "1000px" }}
+      style={{ perspective: "1200px" }}
     >
-      {/* Noise texture overlay */}
-      <div className="absolute inset-0 z-10 opacity-[0.03] pointer-events-none noise-texture"></div>
+      {/* Enhanced noise texture overlay with animation */}
+      <div className="absolute inset-0 z-10 opacity-[0.03] pointer-events-none noise-texture animate-subtle-noise"></div>
 
-      {/* Background with parallax effect */}
+      {/* Background with enhanced parallax effect */}
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
@@ -140,25 +233,94 @@ export default function HeroSection({
           backgroundColor: !backgroundImage ? backgroundColor : "transparent",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          translateY: scrollY * 0.3,
+          translateY: scrollY * 0.4, // Enhanced parallax
           x: moveX,
           y: moveY,
         }}
       />
 
-      {/* Advanced gradient overlay with multiple layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a2a5c]/40 via-[#121d3e]/30 to-[#0a1128]/50"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#2a1a5c]/20 via-transparent to-transparent"></div>
-      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-transparent to-[#0a1a38]/30"></div>
+      {/* Enhanced gradient overlay with multiple animated layers */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-[#1a2a5c]/40 via-[#121d3e]/30 to-[#0a1128]/50"
+        animate={{
+          opacity: [0.7, 0.8, 0.7],
+          background: [
+            "linear-gradient(to bottom right, rgba(26,42,92,0.4), rgba(18,29,62,0.3), rgba(10,17,40,0.5))",
+            "linear-gradient(to bottom right, rgba(26,42,92,0.5), rgba(18,29,62,0.4), rgba(10,17,40,0.6))",
+            "linear-gradient(to bottom right, rgba(26,42,92,0.4), rgba(18,29,62,0.3), rgba(10,17,40,0.5))",
+          ],
+        }}
+        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+      />
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-tr from-[#2a1a5c]/20 via-transparent to-transparent"
+        animate={{
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+      />
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-bl from-transparent via-transparent to-[#0a1a38]/30"
+        animate={{
+          opacity: [0.3, 0.4, 0.3],
+        }}
+        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 }}
+      />
 
-      {/* Radial glow effect */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full radial-glow opacity-20 blur-3xl"></div>
-      <div className="absolute bottom-1/3 right-1/3 w-[300px] h-[300px] rounded-full radial-glow-accent opacity-15 blur-2xl"></div>
+      {/* Enhanced radial glow effects with animation */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full radial-glow opacity-20 blur-3xl"
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.2, 0.25, 0.2],
+        }}
+        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] rounded-full radial-glow-accent opacity-15 blur-2xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.2, 0.15],
+        }}
+        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 }}
+      />
 
-      {/* Advanced particles system */}
+      {/* New floating light orbs */}
+      <motion.div
+        className="absolute top-1/3 right-1/4 w-4 h-4 rounded-full bg-[#8a6fbd] blur-sm"
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.6, 0.9, 0.6],
+          x: [0, 20, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 left-1/3 w-3 h-3 rounded-full bg-[#4a5f9d] blur-sm"
+        animate={{
+          scale: [1, 1.8, 1],
+          opacity: [0.5, 0.8, 0.5],
+          x: [0, -15, 0],
+          y: [0, 15, 0],
+        }}
+        transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 0.5 }}
+      />
+      <motion.div
+        className="absolute top-2/3 right-1/3 w-2 h-2 rounded-full bg-white blur-sm"
+        animate={{
+          scale: [1, 2, 1],
+          opacity: [0.4, 0.7, 0.4],
+          x: [0, 10, 0],
+          y: [0, 10, 0],
+        }}
+        transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 }}
+      />
+
+      {/* Enhanced particles system with trails */}
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((particle, index) => (
-          <div
+          <motion.div
             key={index}
             className="absolute rounded-full"
             style={{
@@ -171,17 +333,50 @@ export default function HeroSection({
               boxShadow: `0 0 ${particle.size * 2}px ${particle.color}`,
               filter: `blur(${particle.size > 3 ? 1 : 0}px)`,
             }}
-          />
+            animate={
+              particle.pulse
+                ? {
+                    scale: [1, 1.2, 1],
+                  }
+                : {}
+            }
+            transition={
+              particle.pulse
+                ? {
+                    duration: 2 + Math.random() * 2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "reverse",
+                  }
+                : {}
+            }
+          >
+            {/* Particle trails */}
+            {particle.trail &&
+              Array.from({ length: particle.trailLength }).map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full"
+                  style={{
+                    width: `${particle.size * (1 - i * 0.2)}px`,
+                    height: `${particle.size * (1 - i * 0.2)}px`,
+                    backgroundColor: particle.color,
+                    opacity: particle.opacity * (1 - i * 0.3),
+                    top: `${i * 2}px`,
+                    filter: `blur(${particle.size > 3 ? 1 : 0}px)`,
+                  }}
+                />
+              ))}
+          </motion.div>
         ))}
       </div>
 
-      {/* 3D geometric shapes */}
+      {/* Enhanced 3D geometric shapes */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating 3D cube */}
+        {/* Floating 3D cube with enhanced effects */}
         <motion.div
           className="absolute top-1/4 right-[15%] w-40 h-40 md:w-60 md:h-60 hidden md:block"
           style={{
-            perspective: "1000px",
+            perspective: "1200px",
             transformStyle: "preserve-3d",
           }}
         >
@@ -202,21 +397,81 @@ export default function HeroSection({
               rotateX: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", repeatType: "reverse" },
             }}
           >
-            {/* Cube faces */}
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform translate-z-[30px]"></div>
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform -translate-z-[30px]"></div>
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-y-90 translate-z-[30px]"></div>
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-y-90 -translate-z-[30px]"></div>
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-x-90 translate-z-[30px]"></div>
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-x-90 -translate-z-[30px]"></div>
+            {/* Enhanced cube faces with glowing edges */}
+            <motion.div
+              className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform translate-z-[30px]"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(74,95,157,0.3)",
+                  "0 0 15px rgba(74,95,157,0.5)",
+                  "0 0 5px rgba(74,95,157,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+            />
+            <motion.div
+              className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform -translate-z-[30px]"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(138,111,189,0.3)",
+                  "0 0 15px rgba(138,111,189,0.5)",
+                  "0 0 5px rgba(138,111,189,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 0.5 }}
+            />
+            <motion.div
+              className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-y-90 translate-z-[30px]"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(74,95,157,0.3)",
+                  "0 0 15px rgba(74,95,157,0.5)",
+                  "0 0 5px rgba(74,95,157,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 }}
+            />
+            <motion.div
+              className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-y-90 -translate-z-[30px]"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(138,111,189,0.3)",
+                  "0 0 15px rgba(138,111,189,0.5)",
+                  "0 0 5px rgba(138,111,189,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1.5 }}
+            />
+            <motion.div
+              className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-x-90 translate-z-[30px]"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(74,95,157,0.3)",
+                  "0 0 15px rgba(74,95,157,0.5)",
+                  "0 0 5px rgba(74,95,157,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 2 }}
+            />
+            <motion.div
+              className="absolute w-full h-full bg-gradient-to-br from-[#4a5f9d]/20 to-[#8a6fbd]/10 backdrop-blur-sm border border-white/10 transform-style-3d transform rotate-x-90 -translate-z-[30px]"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(138,111,189,0.3)",
+                  "0 0 15px rgba(138,111,189,0.5)",
+                  "0 0 5px rgba(138,111,189,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 2.5 }}
+            />
           </motion.div>
         </motion.div>
 
-        {/* Floating pyramid */}
+        {/* Enhanced floating pyramid with glowing edges */}
         <motion.div
           className="absolute bottom-1/3 left-[10%] w-32 h-32 md:w-48 md:h-48 hidden md:block"
           style={{
-            perspective: "1000px",
+            perspective: "1200px",
             transformStyle: "preserve-3d",
           }}
         >
@@ -237,65 +492,165 @@ export default function HeroSection({
               rotateX: { duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", repeatType: "reverse" },
             }}
           >
-            {/* Pyramid faces */}
-            <div className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-b-[48px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2"></div>
-            <div className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-b-[48px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2 rotate-y-90"></div>
-            <div className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-b-[48px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2 rotate-y-180"></div>
-            <div className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-b-[48px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2 rotate-y-270"></div>
+            {/* Enhanced pyramid faces with glowing edges */}
+            <motion.div
+              className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-b-[48px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2"
+              animate={{
+                borderBottomColor: ["rgba(106,127,189,0.2)", "rgba(106,127,189,0.4)", "rgba(106,127,189,0.2)"],
+                filter: [
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                  "drop-shadow(0 0 15px rgba(106,127,189,0.5))",
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                ],
+              }}
+              transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+            />
+            <motion.div
+              className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-b-[48px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2 rotate-y-90"
+              animate={{
+                borderBottomColor: ["rgba(106,127,189,0.2)", "rgba(106,127,189,0.4)", "rgba(106,127,189,0.2)"],
+                filter: [
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                  "drop-shadow(0 0 15px rgba(106,127,189,0.5))",
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                ],
+              }}
+              transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 0.5 }}
+            />
+            <motion.div
+              className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2 rotate-y-180"
+              animate={{
+                borderBottomColor: ["rgba(106,127,189,0.2)", "rgba(106,127,189,0.4)", "rgba(106,127,189,0.2)"],
+                filter: [
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                  "drop-shadow(0 0 15px rgba(106,127,189,0.5))",
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                ],
+              }}
+              transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 }}
+            />
+            <motion.div
+              className="absolute left-0 top-0 w-full h-full border-t-0 border-l-[24px] border-r-[24px] border-l-transparent border-r-transparent border-b-[#6a7fbd]/20 transform-style-3d transform -translate-y-1/2 rotate-y-270"
+              animate={{
+                borderBottomColor: ["rgba(106,127,189,0.2)", "rgba(106,127,189,0.4)", "rgba(106,127,189,0.2)"],
+                filter: [
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                  "drop-shadow(0 0 15px rgba(106,127,189,0.5))",
+                  "drop-shadow(0 0 5px rgba(106,127,189,0.3))",
+                ],
+              }}
+              transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1.5 }}
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* New floating ring */}
+        <motion.div
+          className="absolute top-2/3 right-1/4 w-20 h-20 md:w-32 md:h-32 hidden md:block"
+          style={{
+            perspective: "1200px",
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <motion.div
+            className="relative w-full h-full rounded-full border-2 border-[#8a6fbd]/30"
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+            animate={{
+              rotateY: [0, 180],
+              rotateX: [30, 60, 30],
+              boxShadow: [
+                "0 0 5px rgba(138,111,189,0.3)",
+                "0 0 15px rgba(138,111,189,0.5)",
+                "0 0 5px rgba(138,111,189,0.3)",
+              ],
+            }}
+            transition={{
+              rotateY: { duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+              rotateX: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", repeatType: "reverse" },
+              boxShadow: { duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" },
+            }}
+          >
+            <motion.div
+              className="absolute inset-2 rounded-full border-2 border-[#4a5f9d]/20"
+              animate={{
+                boxShadow: [
+                  "0 0 5px rgba(74,95,157,0.3)",
+                  "0 0 15px rgba(74,95,157,0.5)",
+                  "0 0 5px rgba(74,95,157,0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse", delay: 1 }}
+            />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Content */}
+      {/* Content with enhanced animations */}
       <div className="container mx-auto h-full relative z-20 flex flex-col justify-center px-4 md:px-6">
         <div className="max-w-4xl">
-          {/* Single-line title with animation */}
+          {/* Enhanced title with character-by-character animation */}
           <div className="overflow-hidden mb-6 relative">
             <div className="absolute -left-8 top-1/2 w-6 h-[2px] bg-gradient-to-r from-[#4a5f9d] to-transparent"></div>
 
-            {/* Title on a single line with reveal animation */}
             <motion.div
               className="relative"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <motion.h1
-                className="text-4xl md:text-5xl lg:text-7xl font-bold text-white whitespace-nowrap overflow-hidden"
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
-              >
-                {title}
-              </motion.h1>
+              <div className="text-4xl md:text-5xl lg:text-7xl font-bold text-white overflow-hidden flex flex-wrap">
+                {titleChars.map((char, i) => (
+                  <motion.span
+                    key={i}
+                    custom={i}
+                    variants={titleCharVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className={char === " " ? "mr-4" : ""}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
 
-              {/* Animated underline */}
+              {/* Enhanced animated underline with glow */}
               <motion.div
                 className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[#8a6fbd] to-[#4a5f9d]"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1.2, delay: 0.3 }}
+                style={{
+                  boxShadow: "0 0 10px rgba(138,111,189,0.7)",
+                }}
               />
             </motion.div>
 
             <div className="absolute -right-8 top-1/2 w-6 h-[2px] bg-gradient-to-l from-[#4a5f9d] to-transparent"></div>
 
-            {/* Decorative elements */}
+            {/* Enhanced decorative elements with glow */}
             <motion.div
               className="absolute -bottom-4 left-0 w-20 h-1 bg-gradient-to-r from-[#8a6fbd] to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "5rem" }}
               transition={{ duration: 1, delay: 1 }}
+              style={{
+                boxShadow: "0 0 8px rgba(138,111,189,0.6)",
+              }}
             />
             <motion.div
               className="absolute -bottom-4 left-24 w-40 h-1 bg-gradient-to-r from-[#4a5f9d] to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "10rem" }}
               transition={{ duration: 1.2, delay: 1.2 }}
+              style={{
+                boxShadow: "0 0 8px rgba(74,95,157,0.6)",
+              }}
             />
           </div>
 
-          {/* Stylized subtitle with reveal animation */}
+          {/* Enhanced stylized subtitle with reveal animation and glow */}
           {subtitle && (
             <div className="overflow-hidden relative">
               <motion.div
@@ -303,19 +658,25 @@ export default function HeroSection({
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 0.7 }}
                 transition={{ duration: 0.5, delay: 1.4 }}
+                style={{
+                  boxShadow: "0 0 15px rgba(138,111,189,0.8)",
+                }}
               />
               <motion.p
                 className="text-xl md:text-2xl text-white/90 max-w-2xl leading-relaxed pl-2 backdrop-blur-sm bg-[#121d3e]/10 rounded-md p-4 border-l-2 border-[#4a5f9d]"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
+                style={{
+                  boxShadow: "0 4px 20px rgba(18,29,62,0.3)",
+                }}
               >
                 {subtitle}
               </motion.p>
             </div>
           )}
 
-          {/* Enhanced CTA buttons */}
+          {/* Enhanced CTA buttons with magnetic effect */}
           <motion.div
             className="mt-10 flex flex-wrap gap-6"
             initial={{ y: 50, opacity: 0 }}
@@ -323,6 +684,7 @@ export default function HeroSection({
             transition={{ duration: 0.8, delay: 1 }}
           >
             <motion.button
+              ref={primaryBtnRef}
               className="px-10 py-4 rounded-md bg-gradient-to-r from-[#2a3f7d] to-[#4a5f9d] text-white font-medium relative overflow-hidden group shadow-lg shadow-[#2a3f7d]/20"
               whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(42, 63, 125, 0.4)" }}
               whileTap={{ scale: 0.95 }}
@@ -364,6 +726,7 @@ export default function HeroSection({
             </motion.button>
 
             <motion.button
+              ref={secondaryBtnRef}
               className="px-10 py-4 rounded-md bg-transparent border border-white/30 text-white font-medium backdrop-blur-sm relative overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -398,27 +761,38 @@ export default function HeroSection({
                 whileHover={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.4 }}
               />
+              <motion.div
+                className="absolute -inset-0.5 rounded-lg opacity-0 group-hover:opacity-100 blur-sm bg-gradient-to-r from-[#8a6fbd]/30 to-[#4a5f9d]/30 transition-all duration-500"
+                style={{ zIndex: -1 }}
+              />
             </motion.button>
           </motion.div>
         </div>
       </div>
 
-      {/* Enhanced scroll indicator */}
+      {/* Enhanced scroll indicator with pulse effect */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
-        <span className="text-white/70 text-sm mb-2 tracking-widest uppercase text-xs">Explore</span>
+        <motion.span
+          className="text-white/70 text-sm mb-2 tracking-widest uppercase text-xs"
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+        >
+          Explore
+        </motion.span>
         <motion.div
           className="w-8 h-14 border-2 border-white/30 rounded-full flex justify-center p-1 relative overflow-hidden"
           animate={{
             boxShadow: [
               "0 0 0px rgba(255,255,255,0.3)",
-              "0 0 10px rgba(255,255,255,0.5)",
+              "0 0 15px rgba(255,255,255,0.5)",
               "0 0 0px rgba(255,255,255,0.3)",
             ],
+            borderColor: ["rgba(255,255,255,0.3)", "rgba(255,255,255,0.5)", "rgba(255,255,255,0.3)"],
           }}
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatType: "loop" }}
         >
@@ -426,6 +800,9 @@ export default function HeroSection({
             className="w-1.5 h-1.5 bg-white rounded-full relative z-10"
             animate={{ y: [0, 24, 0] }}
             transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatType: "loop" }}
+            style={{
+              boxShadow: "0 0 10px rgba(255,255,255,0.8)",
+            }}
           />
           <motion.div
             className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4a5f9d]/30 to-transparent"
@@ -434,6 +811,48 @@ export default function HeroSection({
           />
         </motion.div>
       </motion.div>
+
+      {/* Add custom CSS for animations */}
+      <style jsx global>{`
+        @keyframes subtle-noise {
+          0% { background-position: 0 0; }
+          100% { background-position: 100% 100%; }
+        }
+        .noise-texture {
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+          background-size: 200px;
+        }
+        .animate-subtle-noise {
+          animation: subtle-noise 8s linear infinite;
+        }
+        .radial-glow {
+          background: radial-gradient(circle, rgba(74,95,157,0.4) 0%, rgba(74,95,157,0) 70%);
+        }
+        .radial-glow-accent {
+          background: radial-gradient(circle, rgba(138,111,189,0.4) 0%, rgba(138,111,189,0) 70%);
+        }
+        .transform-style-3d {
+          transform-style: preserve-3d;
+        }
+        .rotate-y-90 {
+          transform: rotateY(90deg);
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .rotate-y-270 {
+          transform: rotateY(270deg);
+        }
+        .rotate-x-90 {
+          transform: rotateX(90deg);
+        }
+        .translate-z-\\[30px\\] {
+          transform: translateZ(30px);
+        }
+        .-translate-z-\\[30px\\] {
+          transform: translateZ(-30px);
+        }
+      `}</style>
     </section>
   )
 }
