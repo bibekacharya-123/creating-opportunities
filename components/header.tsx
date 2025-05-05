@@ -1,328 +1,466 @@
-"use client";
+"use client"
 
-import type React from "react";
+import type React from "react"
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Youtube,
-  InstagramIcon as TiktokIcon,
-  X,
-} from "lucide-react";
+import Link from "next/link"
+import Image from "next/image"
+import { useState } from "react"
+import { Facebook, Twitter, Instagram, Linkedin, Youtube, InstagramIcon as TiktokIcon, X } from "lucide-react"
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const { scrollY } = useScroll()
+
+  // Track scroll position to change header appearance
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 10)
+  })
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  // Social icon hover animation variants
+  const socialIconVariants = {
+    initial: { scale: 1 },
+    hover: {
+      scale: 1.2,
+      rotate: [0, 5, -5, 0],
+      transition: { duration: 0.3 },
+    },
+  }
+
+  // Header animation variants
+  const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  // Nav item animation variants
+  const navItemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 },
+    },
+  }
+
+  // Mobile menu animation variants
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut",
+      },
+    },
+  }
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="bg-[#121d3e] text-white py-1 px-4 flex justify-between items-center">
-        <div>
-          <a href="mailto:info@creatingoppo.com" className="text-sm">
-            info@creatingoppo.com
-          </a>
-        </div>
-        <div className="flex space-x-4">
-          <Link href="https://facebook.com" aria-label="Facebook">
-            <Facebook size={18} />
-          </Link>
-          <Link href="https://twitter.com" aria-label="Twitter">
-            <Twitter size={18} />
-          </Link>
-          <Link href="https://instagram.com" aria-label="Instagram">
-            <Instagram size={18} />
-          </Link>
-          <Link href="https://linkedin.com" aria-label="LinkedIn">
-            <Linkedin size={18} />
-          </Link>
-          <Link href="https://youtube.com" aria-label="YouTube">
-            <Youtube size={18} />
-          </Link>
-          <Link href="https://tiktok.com" aria-label="TikTok">
-            <TiktokIcon size={18} />
-          </Link>
-        </div>
-      </div>
-      <nav className="bg-white py-2 px-4 shadow-sm">
+    <motion.header
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "shadow-lg" : ""}`}
+      initial="hidden"
+      animate="visible"
+      variants={headerVariants}
+    >
+  
+      <motion.nav
+        className={`bg-[#121d3e] py-2 px-4 transition-all duration-300 ${scrolled ? "py-1" : "py-2"}`}
+        variants={navItemVariants}
+      >
         <div className="container mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/assets/logo.jpg" // Ensure the image is in the 'public/assets/' directory
-              alt="Creating Opportunities Logo"
-              width={80}
-              height={80}
-              className="h-auto"
-              priority
-            />
-          </Link>
-          <div className="hidden md:flex space-x-6">
-            <NavLink href="/" label="Home" />
-            <NavLink href="/about" label="About" />
-            <NavDropdown
-              label="Events & Projects"
-              items={[
-       
-                {
-                  href: "/events-projects/our-projects",
-                  label: "Our Projects and events",
-                },
-                {
-                  href: "/events-projects/our-initiatives",
-                  label: "Our Initiatives",
-                },
-               
-              ]}
-            />
-            <NavDropdown
-              label="Our Portfolio"
-              items={[
-                { href: "/portfolio", label: "Portfolio" },
-                { href: "/portfolio/gallery", label: "Gallery" },
-                { href: "/portfolio/blog", label: "Blog" },
-              ]}
-            />
-            <NavDropdown
-              label="Our Services"
-              items={[
-                { href: "/services", label: "Services" },
-
-                { href: "/services/merchandise", label: "Merchandise" },
-              ]}
-            />
-            <NavDropdown
-              label="Contact Us"
-              items={[
-                { href: "/contact", label: "Contact Form" },
-                { href: "/donate", label: "Donate" },
-              ]}
-            />
-            <NavDropdown
-              label="Opportunities"
-              items={[
-                { href: "/opportunities", label: "All Opportunities" },
-                { href: "/opportunities/jobs", label: "Jobs" },
-                { href: "/opportunities/internships", label: "Internships" },
-                { href: "/opportunities/fellowships", label: "Fellowships" },
-                { href: "/opportunities/scholarships", label: "Scholarships" },
-                { href: "/opportunities/competitions", label: "Competitions" },
-                { href: "/opportunities/workshops", label: "Workshops" },
-              
-                { href: "/opportunities/post", label: "Post Opportunity" },
-              ]}
-            />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/assets/logo1.png"
+                alt="Creating Opportunities Logo"
+                width={80}
+                height={80}
+                className={`h-auto transition-all duration-300 ${scrolled ? "w-16 h-16" : "w-20 h-20"}`}
+                priority
+              />
+            </Link>
+          </motion.div>
+          <div className="hidden md:flex space-x-3">
+            {[
+              { href: "/", label: "Home", type: "link" },
+              { href: "/about", label: "About", type: "link" },
+              {
+                label: "Events & Projects",
+                type: "dropdown",
+                items: [
+                  { href: "/events-projects/our-projects", label: "Our Projects and events" },
+                  { href: "/events-projects/our-initiatives", label: "Our Initiatives" },
+                ],
+              },
+              {
+                label: "Our Portfolio",
+                type: "dropdown",
+                items: [
+                  { href: "/portfolio", label: "Portfolio" },
+                  { href: "/portfolio/gallery", label: "Gallery" },
+                  { href: "/portfolio/blog", label: "Blog" },
+                ],
+              },
+              {
+                label: "Our Services",
+                type: "dropdown",
+                items: [
+                  { href: "/services", label: "Services" },
+                  { href: "/services/merchandise", label: "Merchandise" },
+                ],
+              },
+              {
+                label: "Contact Us",
+                type: "dropdown",
+                items: [
+                  { href: "/contact", label: "Contact Form" },
+                  { href: "/donate", label: "Donate" },
+                ],
+              },
+              {
+                label: "Opportunities",
+                type: "dropdown",
+                items: [
+                  { href: "/opportunities", label: "All Opportunities" },
+                  { href: "/opportunities/jobs", label: "Jobs" },
+                  { href: "/opportunities/internships", label: "Internships" },
+                  { href: "/opportunities/fellowships", label: "Fellowships" },
+                  { href: "/opportunities/scholarships", label: "Scholarships" },
+                  { href: "/opportunities/competitions", label: "Competitions" },
+                  { href: "/opportunities/workshops", label: "Workshops" },
+                  { href: "/opportunities/post", label: "Post Opportunity" },
+                ],
+              },
+            ].map((item, index) => (
+              <motion.div key={item.label} variants={navItemVariants} custom={index} className="flex items-center">
+                {item.type === "link" ? (
+                  <NavLink href={item.href} label={item.label} />
+                ) : (
+                  <NavDropdown label={item.label} items={item.items} />
+                )}
+              </motion.div>
+            ))}
           </div>
-          <button
-            className="md:hidden focus:outline-none"
+          <motion.button
+            className="md:hidden focus:outline-none bg-[#121d3e] border border-[#4a5f9d]/30 p-2 rounded-lg"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{
+              scale: 1.1,
+              boxShadow: [
+                "0 0 5px rgba(138,111,189,0.3)",
+                "0 0 15px rgba(138,111,189,0.5)",
+                "0 0 5px rgba(138,111,189,0.3)",
+              ],
+            }}
+            transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-5 h-5"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
-          </button>
+          </motion.button>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg absolute w-full z-50 max-h-[80vh] overflow-y-auto">
-          <div className="py-2 px-4">
-            <MobileNavLink
-              href="/"
-              label="Home"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            <MobileNavLink
-              href="/about"
-              label="About"
-              onClick={() => setMobileMenuOpen(false)}
-            />
+      {/* Mobile Menu with AnimatePresence for smooth enter/exit */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="md:hidden bg-[#121d3e] shadow-lg absolute w-full z-50 max-h-[80vh] overflow-y-auto"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <div className="py-2 px-4">
+              <MobileNavLink href="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
+              <MobileNavLink href="/about" label="About" onClick={() => setMobileMenuOpen(false)} />
 
-            <MobileNavAccordion label="Events & Projects">
-            
-              <MobileNavLink
-                href="/events-projects/our-projects"
-                label="Our Projects"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/events-projects/our-initiatives"
-                label="Our Initiatives"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              
-            </MobileNavAccordion>
+              <MobileNavAccordion label="Events & Projects">
+                <MobileNavLink
+                  href="/events-projects/our-projects"
+                  label="Our Projects"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/events-projects/our-initiatives"
+                  label="Our Initiatives"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+              </MobileNavAccordion>
 
-            <MobileNavAccordion label="Our Portfolio">
-              <MobileNavLink
-                href="/portfolio"
-                label="Portfolio"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/portfolio/gallery"
-                label="Gallery"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/portfolio/blog"
-                label="Blog"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            </MobileNavAccordion>
+              <MobileNavAccordion label="Our Portfolio">
+                <MobileNavLink href="/portfolio" label="Portfolio" onClick={() => setMobileMenuOpen(false)} />
+                <MobileNavLink href="/portfolio/gallery" label="Gallery" onClick={() => setMobileMenuOpen(false)} />
+                <MobileNavLink href="/portfolio/blog" label="Blog" onClick={() => setMobileMenuOpen(false)} />
+              </MobileNavAccordion>
 
-            <MobileNavAccordion label="Our Services">
-              <MobileNavLink
-                href="/services"
-                label="Services"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-             
-              <MobileNavLink
-                href="/services/merchandise"
-                label="Merchandise"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            </MobileNavAccordion>
+              <MobileNavAccordion label="Our Services">
+                <MobileNavLink href="/services" label="Services" onClick={() => setMobileMenuOpen(false)} />
+                <MobileNavLink
+                  href="/services/merchandise"
+                  label="Merchandise"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+              </MobileNavAccordion>
 
-            <MobileNavAccordion label="Contact Us">
-              <MobileNavLink
-                href="/contact"
-                label="Contact Form"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/donate"
-                label="Donate"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            </MobileNavAccordion>
+              <MobileNavAccordion label="Contact Us">
+                <MobileNavLink href="/contact" label="Contact Form" onClick={() => setMobileMenuOpen(false)} />
+                <MobileNavLink href="/donate" label="Donate" onClick={() => setMobileMenuOpen(false)} />
+              </MobileNavAccordion>
 
-            <MobileNavAccordion label="Opportunities">
-              <MobileNavLink
-                href="/opportunities"
-                label="All Opportunities"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/opportunities/jobs"
-                label="Jobs"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/opportunities/internships"
-                label="Internships"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/opportunities/fellowships"
-                label="Fellowships"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/opportunities/scholarships"
-                label="Scholarships"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/opportunities/competitions"
-                label="Competitions"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <MobileNavLink
-                href="/opportunities/workshops"
-                label="Workshops"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-             
-              <MobileNavLink
-                href="/opportunities/post"
-                label="Post Opportunity"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            </MobileNavAccordion>
-          </div>
-        </div>
-      )}
-    </header>
-  );
+              <MobileNavAccordion label="Opportunities">
+                <MobileNavLink
+                  href="/opportunities"
+                  label="All Opportunities"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink href="/opportunities/jobs" label="Jobs" onClick={() => setMobileMenuOpen(false)} />
+                <MobileNavLink
+                  href="/opportunities/internships"
+                  label="Internships"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/opportunities/fellowships"
+                  label="Fellowships"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/opportunities/scholarships"
+                  label="Scholarships"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/opportunities/competitions"
+                  label="Competitions"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/opportunities/workshops"
+                  label="Workshops"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/opportunities/post"
+                  label="Post Opportunity"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+              </MobileNavAccordion>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  )
 }
 
 function NavLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link
-      href={href}
-      className="text-gray-800 hover:text-[#0e76bc] font-medium"
-    >
-      {label}
-    </Link>
-  );
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <Link href={href} className="relative overflow-hidden group">
+        <motion.div
+          className="px-4 py-2 rounded-lg bg-[#121d3e] border border-[#4a5f9d]/30 text-white font-medium relative z-10 overflow-hidden"
+          whileHover={{
+            boxShadow: [
+              "0 0 5px rgba(138,111,189,0.3)",
+              "0 0 15px rgba(138,111,189,0.5)",
+              "0 0 5px rgba(138,111,189,0.3)",
+            ],
+          }}
+          transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+        >
+          {label}
+          {/* Animated shine effect */}
+          <motion.div
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-[#8a6fbd]/20 to-transparent"
+            initial={{ x: "-100%" }}
+            whileHover={{ x: "100%" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          />
+          {/* Subtle glow particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full bg-white/80"
+                style={{
+                  width: Math.random() * 3 + 1 + "px",
+                  height: Math.random() * 3 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  filter: "blur(1px)",
+                }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1.5, 0],
+                }}
+                transition={{
+                  duration: Math.random() * 2 + 1,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </Link>
+    </motion.div>
+  )
 }
 
 function NavDropdown({
   label,
   items,
 }: {
-  label: string;
-  items: { href: string; label: string }[];
+  label: string
+  items: { href: string; label: string }[]
 }) {
   return (
     <div className="relative group">
-      <button className="text-gray-800 hover:text-[#0e76bc] font-medium flex items-center">
-        {label}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 ml-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <button className="relative overflow-hidden px-4 py-2 rounded-lg bg-[#121d3e] border border-[#4a5f9d]/30 text-white font-medium flex items-center group">
+          {label}
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 ml-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            animate={{ rotate: 0 }}
+            whileHover={{ rotate: 180 }}
+            transition={{ duration: 0.3 }}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </motion.svg>
+
+          {/* Animated shine effect */}
+          <motion.div
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-[#8a6fbd]/20 to-transparent"
+            initial={{ x: "-100%" }}
+            whileHover={{ x: "100%" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
           />
-        </svg>
-      </button>
-      <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-        <div className="py-1">
+
+          {/* Subtle glow effect */}
+          <motion.div
+            className="absolute inset-0 rounded-lg"
+            animate={{
+              boxShadow: [
+                "0 0 5px rgba(138,111,189,0.3)",
+                "0 0 15px rgba(138,111,189,0.5)",
+                "0 0 5px rgba(138,111,189,0.3)",
+              ],
+            }}
+            transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+          />
+
+          {/* Subtle glow particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full bg-white/80"
+                style={{
+                  width: Math.random() * 3 + 1 + "px",
+                  height: Math.random() * 3 + 1 + "px",
+                  left: Math.random() * 100 + "%",
+                  top: Math.random() * 100 + "%",
+                  filter: "blur(1px)",
+                }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1.5, 0],
+                }}
+                transition={{
+                  duration: Math.random() * 2 + 1,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </div>
+        </button>
+      </motion.div>
+
+      <motion.div
+        className="absolute left-0 mt-2 w-48 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible z-50"
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 0, y: 10, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.2,
+          ease: "easeOut",
+        }}
+        style={{
+          transformOrigin: "top center",
+          pointerEvents: "none",
+          transitionProperty: "opacity, visibility, transform",
+          transitionDuration: "300ms",
+        }}
+      >
+        <div className="py-1 rounded-md overflow-hidden backdrop-blur-sm bg-[#121d3e]/95 border border-[#4a5f9d]/30 shadow-[0_0_15px_rgba(138,111,189,0.3)]">
           {items.map((item, index) => (
-            <Link
+            <motion.div
               key={index}
-              href={item.href}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
+              style={{ pointerEvents: "auto" }}
+              whileHover={{
+                backgroundColor: "rgba(74,95,157,0.3)",
+                transition: { duration: 0.2 },
+              }}
             >
-              {item.label}
-            </Link>
+              <Link
+                href={item.href}
+                className="block px-4 py-2 text-sm text-white/90 hover:text-[#8a6fbd] transition-colors duration-200"
+              >
+                {item.label}
+              </Link>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
-  );
+  )
 }
 
 function MobileNavLink({
@@ -330,61 +468,65 @@ function MobileNavLink({
   label,
   onClick,
 }: {
-  href: string;
-  label: string;
-  onClick: () => void;
+  href: string
+  label: string
+  onClick: () => void
 }) {
   return (
-    <Link
-      href={href}
-      className="block py-2 text-gray-800 hover:text-[#0e76bc] border-b border-gray-100"
-      onClick={onClick}
-    >
-      {label}
-    </Link>
-  );
+    <motion.div whileTap={{ scale: 0.98 }} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+      <Link
+        href={href}
+        className="block py-2 text-white/90 hover:text-[#8a6fbd] border-b border-[#4a5f9d]/30 transition-colors duration-200"
+        onClick={onClick}
+      >
+        {label}
+      </Link>
+    </motion.div>
+  )
 }
 
 function MobileNavAccordion({
   label,
   children,
 }: {
-  label: string;
-  children: React.ReactNode;
+  label: string
+  children: React.ReactNode
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border-b border-gray-100">
-      <button
-        className="flex justify-between items-center w-full py-2 text-gray-800 hover:text-[#0e76bc] font-medium"
+    <div className="border-b border-[#4a5f9d]/30">
+      <motion.button
+        className="flex justify-between items-center w-full py-2 text-white hover:text-[#8a6fbd] font-medium"
         onClick={() => setIsOpen(!isOpen)}
+        whileTap={{ scale: 0.98 }}
       >
         {label}
-        <svg
+        <motion.svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`h-4 w-4 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className="h-4 w-4"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-      <div
-        className={`pl-4 overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96" : "max-h-0"
-        }`}
-      >
-        {children}
-      </div>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </motion.svg>
+      </motion.button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="pl-4 overflow-hidden"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  );
+  )
 }
