@@ -724,48 +724,6 @@ export default function HeroSection({
                 style={{ zIndex: -1 }}
               />
             </motion.button>
-
-            <motion.button
-              ref={secondaryBtnRef}
-              className="px-10 py-4 rounded-md bg-transparent border border-white/30 text-white font-medium backdrop-blur-sm relative overflow-hidden group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center">
-                <motion.span
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "auto", opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 1.3 }}
-                  className="mr-2"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-                    ></path>
-                  </svg>
-                </motion.span>
-                Learn More
-              </span>
-              <motion.span
-                className="absolute inset-0 bg-white/10"
-                initial={{ scale: 0, opacity: 0 }}
-                whileHover={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.4 }}
-              />
-              <motion.div
-                className="absolute -inset-0.5 rounded-lg opacity-0 group-hover:opacity-100 blur-sm bg-gradient-to-r from-[#8a6fbd]/30 to-[#4a5f9d]/30 transition-all duration-500"
-                style={{ zIndex: -1 }}
-              />
-            </motion.button>
           </motion.div>
         </div>
       </div>
