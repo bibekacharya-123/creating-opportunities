@@ -59,8 +59,8 @@ export default function HeroSection({
   const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 })
 
   // Magnetic effect for buttons
-  const primaryBtnRef = useRef<HTMLButtonElement>(null)
-  const secondaryBtnRef = useRef<HTMLButtonElement>(null)
+  const primaryBtnRef = useRef<HTMLButtonElement | null>(null)
+  const secondaryBtnRef = useRef<HTMLButtonElement | null>(null)
 
   // Text animation sequence control
   const [textAnimationComplete, setTextAnimationComplete] = useState(false)
@@ -137,9 +137,6 @@ export default function HeroSection({
         const rotY = (clientX - rect.left - rect.width / 2) / 15
         setRotation({ x: rotX, y: rotY, z: 0 })
 
-        // Apply magnetic effect to buttons
-        applyMagneticEffect(e, primaryBtnRef, 0.3)
-        applyMagneticEffect(e, secondaryBtnRef, 0.2)
       }
     }
 

@@ -4,48 +4,22 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ChevronRight } from "lucide-react"
+import { AnimatedSection } from "@/components/ui/animated-section"
+import HeroSection from "@/components/hero-section"
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] w-full overflow-hidden bg-gradient-to-r from-[#0e6e8c] to-[#0a5a75]">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-black/30 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
-        </div>
-
-        <motion.div
-          className="container relative z-20 mx-auto h-full flex flex-col justify-center px-4 text-white"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Our Services
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl max-w-2xl text-gray-100"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Discover how we can help you achieve your goals with our comprehensive range of professional services
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-        />
-      </section>
+      <main className="min-h-screen">
+        <AnimatedSection animation="fade-in">
+          <HeroSection
+            title="Our Services"
+            subtitle="We'd love to hear from you. Reach out to us with any questions, feedback, or inquiries"
+            backgroundColor="#121d3e"
+          />
+        </AnimatedSection>
+      </main>
 
       {/* Services Section */}
       <section className="py-16 md:py-24">
@@ -75,10 +49,10 @@ export default function ServicesPage() {
   )
 }
 
-function ServiceCard({ service, index }) {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   const isEven = index % 2 === 0
 
-  return (
+  return (<>
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +117,17 @@ function ServiceCard({ service, index }) {
         </div>
       </div>
     </motion.div>
+    </>
   )
+}
+
+interface Service {
+  slug: string
+  title: string
+  subtitle: string
+  description: string
+  image: string
+  link: string
 }
 
 const services = [
