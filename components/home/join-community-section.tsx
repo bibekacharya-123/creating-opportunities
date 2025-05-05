@@ -1,9 +1,15 @@
+"use client"
+
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Users, UserPlus, Handshake, FileText, Megaphone, PlusCircle } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function JoinCommunitySection() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
   const communityOptions = [
     {
       icon: Users,
@@ -43,38 +49,120 @@ export default function JoinCommunitySection() {
     },
   ]
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  }
+
+  // Intersection Observer for section animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#121d3e] mb-4">JOIN OUR COMMUNITY</h2>
-          <p className="text-gray-700 max-w-3xl mx-auto">
+    <section
+      ref={sectionRef}
+      className="py-20 relative overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)`,
+      }}
+    >
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#121d3e]/5"></div>
+        <div className="absolute bottom-10 -left-20 w-80 h-80 rounded-full bg-[#121d3e]/5"></div>
+        <div className="absolute top-1/2 left-1/3 w-40 h-40 rounded-full bg-[#121d3e]/3"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold text-[#121d3e] mb-4 relative inline-block">
+            JOIN OUR COMMUNITY
+            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#121d3e]"></span>
+          </h2>
+          <p className="text-gray-700 max-w-3xl mx-auto mt-6 text-lg">
             Be part of our growing community and help us create more opportunities for individuals across Nepal and
             beyond.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {communityOptions.map((option, index) => (
-            <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-[#0e9aa7]/10 rounded-lg flex items-center justify-center mb-4">
-                  <option.icon className="text-[#0e9aa7]" size={24} />
-                </div>
-                <h3 className="font-bold text-lg text-[#121d3e] mb-2">{option.title}</h3>
-                <p className="text-gray-700 mb-4">{option.description}</p>
-                <Link href={option.link}>
-                  <Button
-                    variant="outline"
-                    className="w-full border-[#0e9aa7] text-[#0e9aa7] hover:bg-[#0e9aa7] hover:text-white"
-                  >
-                    Learn More
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+            <motion.div key={index} variants={cardVariants}>
+              <Card className="border-none rounded-xl overflow-hidden h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl bg-white">
+                <CardContent className="p-0">
+                  <div className="p-6 flex flex-col h-full">
+                    <div className="mb-6 relative">
+                      <div className="w-16 h-16 bg-[#121d3e]/10 rounded-2xl flex items-center justify-center">
+                        <option.icon className="text-[#121d3e]" size={28} />
+                      </div>
+                      <div className="absolute w-8 h-8 bg-[#121d3e] rounded-full -right-2 -bottom-2 animate-pulse"></div>
+                    </div>
+                    <h3 className="font-bold text-xl text-[#121d3e] mb-3">{option.title}</h3>
+                    <p className="text-gray-600 mb-6 flex-grow">{option.description}</p>
+                    <Link href={option.link} className="mt-auto">
+                      <Button
+                        variant="outline"
+                        className="w-full border-[#121d3e] text-[#121d3e] hover:bg-[#121d3e] hover:text-white transition-colors duration-300 rounded-lg py-5"
+                      >
+                        Learn More
+                      </Button>
+                    </Link>
+                  </div>
+                  <div className="h-1 bg-gradient-to-r from-[#121d3e] to-[#121d3e]/60"></div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

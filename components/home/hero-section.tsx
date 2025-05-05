@@ -682,7 +682,7 @@ export default function HeroSection({
           >
             <motion.a
               href="/opportunities" // Link to the opportunities page
-              ref={primaryBtnRef}
+          
               className="px-10 py-4 rounded-md bg-gradient-to-r from-[#2a3f7d] to-[#4a5f9d] text-white font-medium relative overflow-hidden group shadow-lg shadow-[#2a3f7d]/20"
               whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(42, 63, 125, 0.4)" }}
               whileTap={{ scale: 0.95 }}
@@ -734,7 +734,7 @@ export default function HeroSection({
         transition={{ delay: 1.5, duration: 0.8 }}
       >
         <motion.span
-          className="text-white/70 text-sm mb-2 tracking-widest uppercase text-xs"
+          className="text-white/70 text-sm mb-2 tracking-widest uppercase "
           animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
         >
