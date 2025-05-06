@@ -672,56 +672,6 @@ export default function HeroSection({
               </motion.p>
             </div>
           )}
-
-          {/* Enhanced CTA buttons with magnetic effect */}
-          <motion.div
-            className="mt-10 flex flex-wrap gap-6"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <motion.button
-              ref={primaryBtnRef}
-              className="px-10 py-4 rounded-md bg-gradient-to-r from-[#2a3f7d] to-[#4a5f9d] text-white font-medium relative overflow-hidden group shadow-lg shadow-[#2a3f7d]/20"
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(42, 63, 125, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center">
-                <motion.span
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "auto", opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 1.2 }}
-                  className="mr-2"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    ></path>
-                  </svg>
-                </motion.span>
-                Get Started
-              </span>
-              <motion.span
-                className="absolute inset-0 bg-gradient-to-r from-[#4a5f9d] to-[#2a3f7d]"
-                initial={{ x: "100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.4 }}
-              />
-              <motion.span
-                className="absolute -inset-1 rounded-lg opacity-0 group-hover:opacity-100 blur-md bg-gradient-to-r from-[#4a5f9d] to-[#2a3f7d] transition-all duration-500"
-                style={{ zIndex: -1 }}
-              />
-            </motion.button>
-          </motion.div>
         </div>
       </div>
 

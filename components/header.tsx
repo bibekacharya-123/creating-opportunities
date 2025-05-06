@@ -114,8 +114,10 @@ export default function Header() {
                 label: "Events & Projects",
                 type: "dropdown",
                 items: [
-                  { href: "/events-projects/our-projects", label: "Our Projects and events" },
+      
                   { href: "/events-projects/our-initiatives", label: "Our Initiatives" },
+                  {href: "/events-projects/partner-project", label: "Partner Projects" },
+                  { href: "/events-projects/long-projects", label: "Longterm Projects" },
                 ],
               },
               {
@@ -214,14 +216,21 @@ export default function Header() {
               <MobileNavLink href="/about" label="About" onClick={() => setMobileMenuOpen(false)} />
 
               <MobileNavAccordion label="Events & Projects">
-                <MobileNavLink
-                  href="/events-projects/our-projects"
-                  label="Our Projects"
-                  onClick={() => setMobileMenuOpen(false)}
-                />
+             
                 <MobileNavLink
                   href="/events-projects/our-initiatives"
                   label="Our Initiatives"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/events-projects/long-projects"
+                  label="Longterm Projects"
+                 
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                <MobileNavLink
+                  href="/events-projects/partner-project"
+                  label="Partner Projects"
                   onClick={() => setMobileMenuOpen(false)}
                 />
               </MobileNavAccordion>

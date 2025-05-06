@@ -1,36 +1,35 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { motion, useInView, useAnimation } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { motion, useInView, useAnimation, useMotionValue, useSpring } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 
 // Counter animation component
 const Counter = ({ value, duration = 2 }: { value: string; duration?: number }) => {
-  const controls = useAnimation()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, threshold: 0.5 })
 
   // Extract the numeric part
   const numericValue = Number.parseInt(value.replace(/\D/g, ""))
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, { duration, stiffness: 100, damping: 10 })
+  const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
     if (isInView) {
-      controls.start({
-        count: numericValue,
-        transition: { duration, type: "spring", damping: 15 },
-      })
+      motionValue.set(numericValue)
     }
-  }, [isInView, controls, numericValue, duration])
+    const unsubscribe = springValue.onChange((v) => setDisplayValue(Math.floor(v)))
+    return () => unsubscribe()
+  }, [isInView, motionValue, springValue, numericValue])
 
   return (
     <div className="relative">
       <motion.div
         ref={ref}
-        animate={controls}
-        initial={{ count: 0 }}
         className="text-6xl font-bold bg-gradient-to-r from-[#4a9eff] to-[#9ee8ff] bg-clip-text text-transparent relative z-10"
       >
-        {controls.count?.toFixed(0) || 0}
+        {displayValue}
         {value.includes("+") && "+"}
       </motion.div>
       <motion.div
